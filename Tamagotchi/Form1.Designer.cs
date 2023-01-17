@@ -28,62 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.buttonA = new Tamagotchi.ButtonEllipse();
-            this.buttonB = new Tamagotchi.ButtonEllipse();
-            this.buttonC = new Tamagotchi.ButtonEllipse();
+            this.components = new System.ComponentModel.Container();
             this.Crack = new Tamagotchi.TransparentPictureBox();
             this.Shell = new Tamagotchi.TransparentPictureBox();
             this.Design = new Tamagotchi.TransparentPictureBox();
-            this.Buttons = new Tamagotchi.TransparentPictureBox();
+            this.Logo_Outline = new Tamagotchi.TransparentPictureBox();
             this.Screen = new Tamagotchi.TransparentPictureBox();
             this.Frame = new Tamagotchi.TransparentPictureBox();
+            this.buttonA = new Tamagotchi.ButtonEllipse();
+            this.buttonB = new Tamagotchi.ButtonEllipse();
+            this.buttonC = new Tamagotchi.ButtonEllipse();
+            this.MenuPanel = new System.Windows.Forms.Panel();
+            this.PauseButton = new System.Windows.Forms.Button();
+            this.SoundButton = new System.Windows.Forms.Button();
+            this.ResetButton = new System.Windows.Forms.Button();
+            this.MenuButton = new System.Windows.Forms.Button();
+            this.GameTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Crack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Shell)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Design)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Buttons)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Screen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Logo_Outline)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Frame)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Screen)).BeginInit();
+            this.MenuPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // buttonA
-            // 
-            this.buttonA.BackColor = System.Drawing.Color.Transparent;
-            this.buttonA.FlatAppearance.BorderSize = 0;
-            this.buttonA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonA.ForeColor = System.Drawing.Color.Black;
-            this.buttonA.Location = new System.Drawing.Point(76, 243);
-            this.buttonA.Name = "buttonA";
-            this.buttonA.Size = new System.Drawing.Size(16, 16);
-            this.buttonA.TabIndex = 0;
-            this.buttonA.UseVisualStyleBackColor = false;
-            this.buttonA.Click += new System.EventHandler(this.AButtonClicked);
-            // 
-            // buttonB
-            // 
-            this.buttonB.BackColor = System.Drawing.Color.Transparent;
-            this.buttonB.FlatAppearance.BorderSize = 0;
-            this.buttonB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonB.ForeColor = System.Drawing.Color.Black;
-            this.buttonB.Location = new System.Drawing.Point(116, 253);
-            this.buttonB.Name = "buttonB";
-            this.buttonB.Size = new System.Drawing.Size(16, 16);
-            this.buttonB.TabIndex = 0;
-            this.buttonB.UseVisualStyleBackColor = false;
-            this.buttonB.Click += new System.EventHandler(this.BButtonClicked);
-            // 
-            // buttonC
-            // 
-            this.buttonC.BackColor = System.Drawing.Color.Transparent;
-            this.buttonC.FlatAppearance.BorderSize = 0;
-            this.buttonC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonC.ForeColor = System.Drawing.Color.Black;
-            this.buttonC.Location = new System.Drawing.Point(157, 243);
-            this.buttonC.Name = "buttonC";
-            this.buttonC.Size = new System.Drawing.Size(16, 16);
-            this.buttonC.TabIndex = 0;
-            this.buttonC.UseVisualStyleBackColor = false;
-            this.buttonC.Click += new System.EventHandler(this.CButtonClicked);
             // 
             // Crack
             // 
@@ -92,6 +60,7 @@
             this.Crack.Location = new System.Drawing.Point(37, 67);
             this.Crack.Name = "Crack";
             this.Crack.Size = new System.Drawing.Size(175, 169);
+            this.Crack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Crack.TabIndex = 1;
             this.Crack.TabStop = false;
             // 
@@ -102,6 +71,7 @@
             this.Shell.Location = new System.Drawing.Point(1, 12);
             this.Shell.Name = "Shell";
             this.Shell.Size = new System.Drawing.Size(247, 280);
+            this.Shell.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Shell.TabIndex = 2;
             this.Shell.TabStop = false;
             // 
@@ -109,21 +79,33 @@
             // 
             this.Design.BackColor = System.Drawing.Color.Transparent;
             this.Design.Image = global::Tamagotchi.Properties.Resources.Design_Spots;
-            this.Design.Location = new System.Drawing.Point(21, 54);
+            this.Design.Location = new System.Drawing.Point(21, 53);
             this.Design.Name = "Design";
-            this.Design.Size = new System.Drawing.Size(212, 193);
+            this.Design.Size = new System.Drawing.Size(212, 194);
+            this.Design.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Design.TabIndex = 3;
             this.Design.TabStop = false;
             // 
-            // Buttons
+            // Logo_Outline
             // 
-            this.Buttons.BackColor = System.Drawing.Color.Transparent;
-            this.Buttons.Image = global::Tamagotchi.Properties.Resources.Buttons_Purple;
-            this.Buttons.Location = new System.Drawing.Point(75, 242);
-            this.Buttons.Name = "Buttons";
-            this.Buttons.Size = new System.Drawing.Size(99, 29);
-            this.Buttons.TabIndex = 4;
-            this.Buttons.TabStop = false;
+            this.Logo_Outline.BackColor = System.Drawing.Color.Transparent;
+            this.Logo_Outline.Image = global::Tamagotchi.Properties.Resources.Logo_Outline_Cyan;
+            this.Logo_Outline.Location = new System.Drawing.Point(66, 30);
+            this.Logo_Outline.Name = "Logo_Outline";
+            this.Logo_Outline.Size = new System.Drawing.Size(121, 34);
+            this.Logo_Outline.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Logo_Outline.TabIndex = 5;
+            this.Logo_Outline.TabStop = false;
+            // 
+            // Frame
+            // 
+            this.Frame.BackColor = System.Drawing.Color.Transparent;
+            this.Frame.Image = global::Tamagotchi.Properties.Resources.Base_Frame;
+            this.Frame.Location = new System.Drawing.Point(0, 0);
+            this.Frame.Name = "Frame";
+            this.Frame.SizeMode = PictureBoxSizeMode.AutoSize;
+            this.Frame.TabIndex = 6;
+            this.Frame.TabStop = false;
             // 
             // Screen
             // 
@@ -131,19 +113,107 @@
             this.Screen.Location = new System.Drawing.Point(77, 107);
             this.Screen.Name = "Screen";
             this.Screen.Size = new System.Drawing.Size(96, 90);
-            this.Screen.TabIndex = 5;
+            this.Screen.TabIndex = 7;
             this.Screen.TabStop = false;
             this.Screen.Paint += new System.Windows.Forms.PaintEventHandler(this.UpdateScreenGraphics);
             // 
-            // Frame
+            // buttonA
             // 
-            this.Frame.BackColor = System.Drawing.Color.Transparent;
-            this.Frame.Image = global::Tamagotchi.Properties.Resources.BaseFrame;
-            this.Frame.Location = new System.Drawing.Point(0, 0);
-            this.Frame.Name = "Frame";
-            this.Frame.Size = new System.Drawing.Size(249, 293);
-            this.Frame.TabIndex = 6;
-            this.Frame.TabStop = false;
+            this.buttonA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(81)))), ((int)(((byte)(160)))));
+            this.buttonA.FlatAppearance.BorderSize = 0;
+            this.buttonA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonA.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonA.Location = new System.Drawing.Point(75, 243);
+            this.buttonA.Name = "buttonA";
+            this.buttonA.Size = new System.Drawing.Size(17, 17);
+            this.buttonA.TabIndex = 0;
+            this.buttonA.UseVisualStyleBackColor = false;
+            this.buttonA.Click += new System.EventHandler(this.AButtonClicked);
+            // 
+            // buttonB
+            // 
+            this.buttonB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(81)))), ((int)(((byte)(160)))));
+            this.buttonB.FlatAppearance.BorderSize = 0;
+            this.buttonB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonB.ForeColor = System.Drawing.Color.Black;
+            this.buttonB.Location = new System.Drawing.Point(116, 253);
+            this.buttonB.Name = "buttonB";
+            this.buttonB.Size = new System.Drawing.Size(17, 17);
+            this.buttonB.TabIndex = 0;
+            this.buttonB.UseVisualStyleBackColor = false;
+            this.buttonB.Click += new System.EventHandler(this.BButtonClicked);
+            // 
+            // buttonC
+            // 
+            this.buttonC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(81)))), ((int)(((byte)(160)))));
+            this.buttonC.FlatAppearance.BorderSize = 0;
+            this.buttonC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonC.ForeColor = System.Drawing.Color.Black;
+            this.buttonC.Location = new System.Drawing.Point(156, 243);
+            this.buttonC.Name = "buttonC";
+            this.buttonC.Size = new System.Drawing.Size(17, 17);
+            this.buttonC.TabIndex = 0;
+            this.buttonC.UseVisualStyleBackColor = false;
+            this.buttonC.Click += new System.EventHandler(this.CButtonClicked);
+            // 
+            // MenuPanel
+            // 
+            this.MenuPanel.BackColor = System.Drawing.Color.LightGray;
+            this.MenuPanel.Controls.Add(this.PauseButton);
+            this.MenuPanel.Controls.Add(this.SoundButton);
+            this.MenuPanel.Controls.Add(this.ResetButton);
+            this.MenuPanel.Controls.Add(this.MenuButton);
+            this.MenuPanel.Location = new System.Drawing.Point(0, 0);
+            this.MenuPanel.MaximumSize = new System.Drawing.Size(85, 176);
+            this.MenuPanel.MinimumSize = new System.Drawing.Size(85, 23);
+            this.MenuPanel.Name = "MenuPanel";
+            this.MenuPanel.Size = new System.Drawing.Size(85, 23);
+            this.MenuPanel.TabIndex = 7;
+            // 
+            // PauseButton
+            // 
+            this.PauseButton.Location = new System.Drawing.Point(3, 29);
+            this.PauseButton.Name = "PauseButton";
+            this.PauseButton.Size = new System.Drawing.Size(78, 32);
+            this.PauseButton.TabIndex = 1;
+            this.PauseButton.Text = "Pause";
+            this.PauseButton.UseVisualStyleBackColor = true;
+            // 
+            // SoundButton
+            // 
+            this.SoundButton.Location = new System.Drawing.Point(3, 67);
+            this.SoundButton.Name = "SoundButton";
+            this.SoundButton.Size = new System.Drawing.Size(78, 48);
+            this.SoundButton.TabIndex = 1;
+            this.SoundButton.Text = "Turn Sound On/Off";
+            this.SoundButton.UseVisualStyleBackColor = true;
+            // 
+            // ResetButton
+            // 
+            this.ResetButton.Location = new System.Drawing.Point(3, 121);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(78, 48);
+            this.ResetButton.TabIndex = 1;
+            this.ResetButton.Text = "Reset Tamagotchi";
+            this.ResetButton.UseVisualStyleBackColor = true;
+            // 
+            // MenuButton
+            // 
+            this.MenuButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.MenuButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MenuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MenuButton.Location = new System.Drawing.Point(0, 0);
+            this.MenuButton.Name = "MenuButton";
+            this.MenuButton.Size = new System.Drawing.Size(85, 23);
+            this.MenuButton.TabIndex = 0;
+            this.MenuButton.Text = "Menu";
+            this.MenuButton.UseVisualStyleBackColor = false;
+            this.MenuButton.Click += new System.EventHandler(this.ToggleMenuOpen);
+            // 
+            // GameTimer
+            // 
+            this.GameTimer.Interval = 30;
+            this.GameTimer.Tick += new System.EventHandler(this.GameTick);
             // 
             // Form1
             // 
@@ -151,24 +221,28 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(249, 293);
-            this.Controls.Add(this.Frame);
-            this.Controls.Add(this.Screen);
-            this.Controls.Add(this.Buttons);
-            this.Controls.Add(this.Design);
-            this.Controls.Add(this.Shell);
-            this.Controls.Add(this.Crack);
+            this.Controls.Add(this.MenuPanel);
             this.Controls.Add(this.buttonC);
             this.Controls.Add(this.buttonB);
             this.Controls.Add(this.buttonA);
+            this.Controls.Add(this.Screen);
+            this.Controls.Add(this.Frame);
+            this.Controls.Add(this.Logo_Outline);
+            this.Controls.Add(this.Design);
+            this.Controls.Add(this.Shell);
+            this.Controls.Add(this.Crack);
             this.Name = "Form1";
             this.Text = "Tamagotchi Connection v1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Crack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Shell)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Design)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Buttons)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Screen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Logo_Outline)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Frame)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Screen)).EndInit();
+            this.MenuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -180,8 +254,14 @@
         private TransparentPictureBox Crack;
         private TransparentPictureBox Shell;
         private TransparentPictureBox Design;
-        private TransparentPictureBox Buttons;
-        private TransparentPictureBox Screen;
+        private TransparentPictureBox Logo_Outline;
         private TransparentPictureBox Frame;
+        private TransparentPictureBox Screen;
+        private Panel MenuPanel;
+        private Button ResetButton;
+        private Button MenuButton;
+        private Button PauseButton;
+        private Button SoundButton;
+        private System.Windows.Forms.Timer GameTimer;
     }
 }

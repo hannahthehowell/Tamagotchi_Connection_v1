@@ -63,9 +63,9 @@ namespace Tamagotchi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BaseFrame {
+        internal static System.Drawing.Bitmap Base_Frame {
             get {
-                object obj = ResourceManager.GetObject("BaseFrame", resourceCulture);
+                object obj = ResourceManager.GetObject("Base_Frame", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,6 +96,26 @@ namespace Tamagotchi.Properties {
         internal static System.Drawing.Bitmap Design_Spots {
             get {
                 object obj = ResourceManager.GetObject("Design_Spots", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logo_Outline_Cyan {
+            get {
+                object obj = ResourceManager.GetObject("Logo_Outline_Cyan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Menu_Bold {
+            get {
+                object obj = ResourceManager.GetObject("Menu_Bold", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
