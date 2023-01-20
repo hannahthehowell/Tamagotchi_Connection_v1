@@ -10,10 +10,16 @@ namespace Tamagotchi
     {
         public static int cellWidth { get; set; }
         public static int cellHeight { get; set; }
+        public static int screenSizeX;
+        public static int screenSizeY;
         public ScreenSettings()
         {
             cellWidth = 3;  // num pixels per cell
             cellHeight = 3;
+
+            // size of screen
+            screenSizeX = 96;
+            screenSizeY = 90;
         }
     }
 }

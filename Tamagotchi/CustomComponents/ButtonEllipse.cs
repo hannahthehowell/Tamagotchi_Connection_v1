@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tamagotchi
+namespace Tamagotchi.CustomComponents
 {
     // class code from https://www.youtube.com/watch?v=HG7hi9s7YhQ
     internal class ButtonEllipse : Button
@@ -14,7 +14,7 @@ namespace Tamagotchi
         {
             GraphicsPath graphics = new GraphicsPath();
             graphics.AddEllipse(0, 0, ClientSize.Width, ClientSize.Height);
-            this.Region = new System.Drawing.Region(graphics);
+            Region = new Region(graphics);
             base.OnPaint(pevent);
         }
     }

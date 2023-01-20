@@ -1,4 +1,6 @@
-﻿namespace Tamagotchi
+﻿using Tamagotchi.CustomComponents;
+
+namespace Tamagotchi
 {
     partial class Form1
     {
@@ -29,15 +31,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Crack = new Tamagotchi.TransparentPictureBox();
-            this.Shell = new Tamagotchi.TransparentPictureBox();
-            this.Design = new Tamagotchi.TransparentPictureBox();
-            this.Logo_Outline = new Tamagotchi.TransparentPictureBox();
-            this.Screen = new Tamagotchi.TransparentPictureBox();
-            this.Frame = new Tamagotchi.TransparentPictureBox();
-            this.buttonA = new Tamagotchi.ButtonEllipse();
-            this.buttonB = new Tamagotchi.ButtonEllipse();
-            this.buttonC = new Tamagotchi.ButtonEllipse();
+            this.Crack = new TransparentPictureBox();
+            this.Shell = new TransparentPictureBox();
+            this.Design = new TransparentPictureBox();
+            this.Logo_Outline = new TransparentPictureBox();
+            this.Screen = new TransparentPictureBox();
+            this.Frame = new TransparentPictureBox();
+            this.buttonA = new ButtonEllipse();
+            this.buttonB = new ButtonEllipse();
+            this.buttonC = new ButtonEllipse();
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.PauseButton = new System.Windows.Forms.Button();
             this.SoundButton = new System.Windows.Forms.Button();
@@ -48,8 +50,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Shell)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Design)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_Outline)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Frame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Screen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Frame)).BeginInit();
             this.MenuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,25 +99,26 @@
             this.Logo_Outline.TabIndex = 5;
             this.Logo_Outline.TabStop = false;
             // 
-            // Frame
-            // 
-            this.Frame.BackColor = System.Drawing.Color.Transparent;
-            this.Frame.Image = global::Tamagotchi.Properties.Resources.Base_Frame;
-            this.Frame.Location = new System.Drawing.Point(0, 0);
-            this.Frame.Name = "Frame";
-            this.Frame.SizeMode = PictureBoxSizeMode.AutoSize;
-            this.Frame.TabIndex = 6;
-            this.Frame.TabStop = false;
-            // 
             // Screen
             // 
-            this.Screen.BackColor = System.Drawing.Color.Transparent;
+            this.Screen.BackColor = System.Drawing.Color.LightGray;
             this.Screen.Location = new System.Drawing.Point(77, 107);
             this.Screen.Name = "Screen";
             this.Screen.Size = new System.Drawing.Size(96, 90);
             this.Screen.TabIndex = 7;
             this.Screen.TabStop = false;
             this.Screen.Paint += new System.Windows.Forms.PaintEventHandler(this.UpdateScreenGraphics);
+            // 
+            // Frame
+            // 
+            this.Frame.BackColor = System.Drawing.Color.Transparent;
+            this.Frame.Image = global::Tamagotchi.Properties.Resources.Base_Frame;
+            this.Frame.Location = new System.Drawing.Point(0, 0);
+            this.Frame.Name = "Frame";
+            this.Frame.Size = new System.Drawing.Size(249, 293);
+            this.Frame.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Frame.TabIndex = 6;
+            this.Frame.TabStop = false;
             // 
             // buttonA
             // 
@@ -178,6 +181,7 @@
             this.PauseButton.TabIndex = 1;
             this.PauseButton.Text = "Pause";
             this.PauseButton.UseVisualStyleBackColor = true;
+            this.PauseButton.Click += new System.EventHandler(this.PauseButtonClicked);
             // 
             // SoundButton
             // 
@@ -187,6 +191,7 @@
             this.SoundButton.TabIndex = 1;
             this.SoundButton.Text = "Turn Sound On/Off";
             this.SoundButton.UseVisualStyleBackColor = true;
+            this.SoundButton.Click += new System.EventHandler(this.SoundButtonClicked);
             // 
             // ResetButton
             // 
@@ -196,6 +201,7 @@
             this.ResetButton.TabIndex = 1;
             this.ResetButton.Text = "Reset Tamagotchi";
             this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButtonClicked);
             // 
             // MenuButton
             // 
@@ -238,8 +244,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Shell)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Design)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo_Outline)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Frame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Screen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Frame)).EndInit();
             this.MenuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

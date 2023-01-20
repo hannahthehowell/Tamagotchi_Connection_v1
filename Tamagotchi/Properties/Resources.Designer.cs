@@ -73,16 +73,6 @@ namespace Tamagotchi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Buttons_Purple {
-            get {
-                object obj = ResourceManager.GetObject("Buttons_Purple", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Crack_Purple {
             get {
                 object obj = ResourceManager.GetObject("Crack_Purple", resourceCulture);
