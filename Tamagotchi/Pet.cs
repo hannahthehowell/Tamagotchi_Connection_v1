@@ -22,29 +22,29 @@ namespace Tamagotchi
             Undetermined,
             A, B, C, D
         }
-        
-        double hunger = 0;
-        double happiness = 0;
-        double timeAlive = 0;
-        bool isAging = false;
 
-        string givenName = "";
-        int weight = 1;
-        int age = 0;
-        int training = 0;
+        public double hunger = 0;
+        public double happiness = 0;
+        public double timeAlive = 0;
+        public bool isAging = false;
 
-        SpeciesInfo.Nature parent1Nature = SpeciesInfo.Nature.Undetermined;
-        SpeciesInfo.Nature parent2Nature = SpeciesInfo.Nature.Undetermined;
-        bool isChildOfSenior = false;
-        int generationNumber = 0;
+        public string givenName = "";
+        public int weight = 1;
+        public int age = 0;
+        public int training = 0;
 
-        int numMentalMistakes = 0;
-        int numPhysicalMistakes = 0;
+        public SpeciesInfo.Nature parent1Nature = SpeciesInfo.Nature.Undetermined;
+        public SpeciesInfo.Nature parent2Nature = SpeciesInfo.Nature.Undetermined;
+        public bool isChildOfSenior = false;
+        public int generationNumber = 0;
 
-        CareTier careTier = CareTier.Undetermined;
+        public int numMentalMistakes = 0;
+        public int numPhysicalMistakes = 0;
 
-        Sex sex;
-        SpeciesInfo speciesInfo;
+        public CareTier careTier = CareTier.Undetermined;
+
+        public Sex sex;
+        public SpeciesInfo speciesInfo;
 
         // When creating a pet for the first time
         public Pet()

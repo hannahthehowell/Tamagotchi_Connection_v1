@@ -1,4 +1,5 @@
 using System.Drawing.Imaging;
+using System.Text.Json;
 
 namespace Tamagotchi
 {
@@ -9,29 +10,19 @@ namespace Tamagotchi
 
         private Pet pet;
 
-        int[,] testMametchi = { 
-            { 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0 },
-            { 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 },
-            { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-            { 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
-            { 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0 },
-            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-            { 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1 },
-            { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 },
-            { 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0 },
-            { 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0 },
-            { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 },
-            { 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
-            { 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0 },
-            { 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
-        };
-
         public Form1()
         {
             InitializeComponent();
 
             new ScreenSettings();
+            populateSpriteSheets();
+        }
+
+        private void populateSpriteSheets()
+        {
+            // TODO read in and populate other sprite sheets
+            //string fileName = "masterSpriteSheet.json";
+            //string jsonString = File.ReadAllText(fileName);
         }
 
         private void PauseButtonClicked(object sender, EventArgs e)
@@ -67,29 +58,35 @@ namespace Tamagotchi
             Console.WriteLine("C Button Clicked");
 
         }
+        private void drawSpriteTL(Graphics canvas, int[,] sprite, int[] startingPixel)
+        {
+            for (int y = 0; y < sprite.GetLength(0); y++)
+            {
+                for (int x = 0; x < sprite.GetLength(1); x++)
+                {
+                    if (sprite[y, x] == 1)
+                    {
+                        // draws one filled pixel
+                        canvas.FillRectangle(Brushes.Black, new Rectangle
+                        (
+                        startingPixel[0] + x * ScreenSettings.cellWidth,
+                        startingPixel[1] + y * ScreenSettings.cellHeight,
+                        ScreenSettings.cellWidth,
+                        ScreenSettings.cellHeight
+                        ));
+                    }
+                }
+            }
+        }
         private void UpdateScreenGraphics(object sender, PaintEventArgs e)
         {
             Graphics canvas = e.Graphics;
             if (pet != null)
             {
                 int[] startingPixel = { 15, 30 };
-                // looping through test mametchi
-                for (int y = 0; y < testMametchi.GetLength(0); y++)
-                {
-                    for (int x = 0; x < testMametchi.GetLength(1); x++)
-                    {
-                        if (testMametchi[y, x] == 1)
-                        {
-                            canvas.FillRectangle(Brushes.Black, new Rectangle
-                            (
-                            startingPixel[0] + x * ScreenSettings.cellWidth,
-                            startingPixel[1] + y * ScreenSettings.cellHeight,
-                            ScreenSettings.cellWidth,
-                            ScreenSettings.cellHeight
-                            ));
-                        }
-                    }
-                }
+                // TODO: how to access sprite 2d arrays?
+                Console.WriteLine(pet.speciesInfo.sprites);
+                //drawSpriteTL(canvas, pet.speciesInfo.sprites.idle1, startingPixel);
             }
         }
 

@@ -25,6 +25,9 @@
 
   <ItemGroup>
     <Folder Include="AdditionalFiles\" />
+    <Folder Include="SpriteSheetClasses\Other\" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>
