@@ -31,15 +31,15 @@ namespace Tamagotchi
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Crack = new TransparentPictureBox();
-            this.Shell = new TransparentPictureBox();
-            this.Design = new TransparentPictureBox();
-            this.Logo_Outline = new TransparentPictureBox();
-            this.Screen = new TransparentPictureBox();
-            this.Frame = new TransparentPictureBox();
-            this.buttonA = new ButtonEllipse();
-            this.buttonB = new ButtonEllipse();
-            this.buttonC = new ButtonEllipse();
+            this.Crack = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Shell = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Design = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Logo_Outline = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Screen = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Frame = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.buttonA = new Tamagotchi.CustomComponents.ButtonEllipse();
+            this.buttonB = new Tamagotchi.CustomComponents.ButtonEllipse();
+            this.buttonC = new Tamagotchi.CustomComponents.ButtonEllipse();
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.PauseButton = new System.Windows.Forms.Button();
             this.SoundButton = new System.Windows.Forms.Button();
@@ -218,7 +218,6 @@ namespace Tamagotchi
             // 
             // GameTimer
             // 
-            this.GameTimer.Interval = 30;
             this.GameTimer.Tick += new System.EventHandler(this.GameTick);
             // 
             // Form1

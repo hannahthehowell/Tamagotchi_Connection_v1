@@ -81,8 +81,7 @@ namespace Tamagotchi
         public int wakeTime;
         public int sleepTime;
 
-        // TODO: get sprites of egg here
-        public speciesSprites sprites = JsonSerializer.Deserialize<BabytchiSprites>(File.ReadAllText("../../../SpriteSheets/Species/BabytchiSpriteSheet.json"));
+        public speciesSprites sprites;
 
         public SpeciesInfo()
         {
@@ -90,7 +89,8 @@ namespace Tamagotchi
             nature = Nature.Undetermined;
             lifeStage = LifeStage.Egg;
 
-            
+            string jsonString = File.ReadAllText("../../../SpriteSheets/Species/EggSpriteSheet.json");
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -112,7 +112,7 @@ namespace Tamagotchi
             sleepTime = 25 * 60 * 60;  // sleep time is never reached b/c it does not sleep through the night until evolve to child
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/BabytchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<BabytchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -131,7 +131,7 @@ namespace Tamagotchi
             sleepTime = 25 * 60 * 60;  // sleep time is never reached b/c it does not sleep through the night until evolve to child
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/ShirobabytchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<ShirobabytchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -148,7 +148,7 @@ namespace Tamagotchi
             sleepTime = 20 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MarutchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<MarutchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -164,7 +164,7 @@ namespace Tamagotchi
             sleepTime = 20 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/KinakomotchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<KinakomotchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -184,7 +184,7 @@ namespace Tamagotchi
             sleepTime = 20 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/IchigotchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<IchigotchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -203,7 +203,7 @@ namespace Tamagotchi
             sleepTime = 20 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/Young_MimitchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<Young_MimitchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -222,7 +222,7 @@ namespace Tamagotchi
             sleepTime = 21 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/HinotamotchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<HinotamatchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -241,7 +241,7 @@ namespace Tamagotchi
             sleepTime = 21 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OniontchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<OniontchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -261,7 +261,7 @@ namespace Tamagotchi
             sleepTime = 21 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MametchiSpriteSheet.json");
-            MametchiSprites sprites = JsonSerializer.Deserialize<MametchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -280,7 +280,7 @@ namespace Tamagotchi
             sleepTime = 21 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MimitchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<MimitchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -299,7 +299,7 @@ namespace Tamagotchi
             sleepTime = 22 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/KuchipatchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<KuchipatchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -318,7 +318,7 @@ namespace Tamagotchi
             sleepTime = 22 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MemetchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<MemetchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -334,7 +334,7 @@ namespace Tamagotchi
             sleepTime = 22 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/TarakotchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<TarakotchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -353,7 +353,7 @@ namespace Tamagotchi
             sleepTime = 21 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/HanatchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<HanatchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -372,7 +372,7 @@ namespace Tamagotchi
             sleepTime = 21 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/AndrotchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<AndrotchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -391,7 +391,7 @@ namespace Tamagotchi
             sleepTime = 23 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MasktchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<MasktchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -410,7 +410,7 @@ namespace Tamagotchi
             sleepTime = 23 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/GozarutchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<GozarutchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -429,7 +429,7 @@ namespace Tamagotchi
             sleepTime = 22 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OyajitchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<OyajitchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -449,7 +449,7 @@ namespace Tamagotchi
             sleepTime = 20 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OjitchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<OjitchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 
@@ -468,7 +468,7 @@ namespace Tamagotchi
             sleepTime = 20 * 60 * 60;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OtokitchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<OtokitchiSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
         }
     }
 }

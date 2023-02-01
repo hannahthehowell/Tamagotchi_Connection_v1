@@ -120,39 +120,7 @@ namespace Tamagotchi
                         
                         string speciesNameStr = speciesName.ToString();
                         speciesInfo = (SpeciesInfo)Activator.CreateInstance(Type.GetType(speciesNameStr));
-
-                        /*switch (speciesName)
-                        {
-                            case SpeciesInfo.Species.Mametchi:
-                                speciesInfo = new Mametchi();
-                                break;
-                            case SpeciesInfo.Species.Mimitchi:
-                                speciesInfo = new Mimitchi();
-                                break;
-                            case SpeciesInfo.Species.Kuchipatchi:
-                                speciesInfo = new Kuchipatchi();
-                                break;
-                            case SpeciesInfo.Species.Memetchi:
-                                speciesInfo = new Memetchi();
-                                break;
-                            case SpeciesInfo.Species.Tarakotchi:
-                                speciesInfo = new Tarakotchi();
-                                break;
-                            case SpeciesInfo.Species.Hanatchi:
-                                speciesInfo = new Hanatchi();
-                                break;
-                            case SpeciesInfo.Species.Androtchi:
-                                speciesInfo = new Androtchi();
-                                break;
-                            case SpeciesInfo.Species.Masktchi:
-                                speciesInfo = new Masktchi();
-                                break;
-                            case SpeciesInfo.Species.Gozarutchi:
-                                speciesInfo = new Gozarutchi();
-                                break;
-                        }*/
                         break;
-                        
                 }
                 
             }

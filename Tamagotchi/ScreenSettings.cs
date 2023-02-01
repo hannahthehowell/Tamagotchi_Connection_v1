@@ -12,6 +12,8 @@ namespace Tamagotchi
         public static int cellHeight { get; set; }
         public static int screenSizeX;
         public static int screenSizeY;
+        public static int screenWidthNumCells;
+        public static int screenHeightNumCells;
 
         public static int cellsPerLetterHeight;
         public static int cellsPerLetterWidth;
@@ -27,6 +29,9 @@ namespace Tamagotchi
             // size of screen
             screenSizeX = 96;
             screenSizeY = 90;
+
+            screenWidthNumCells = screenSizeX / cellWidth;
+            screenHeightNumCells = screenSizeY / cellHeight;
 
             cellsPerLetterHeight = 7;
             cellsPerLetterWidth = 6;
