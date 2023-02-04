@@ -78,8 +78,8 @@ namespace Tamagotchi
         public bool SexExclusive = false;
         public Pet.Sex SexAvailable;
 
-        public int wakeTime;
-        public int sleepTime;
+        public TimeSpan wakeTime;
+        public TimeSpan sleepTime;
 
         public speciesSprites sprites;
 
@@ -108,8 +108,8 @@ namespace Tamagotchi
             SexExclusive = true;
             SexAvailable = Pet.Sex.Male;
             
-            wakeTime = 0 * 60 * 60 +5;
-            sleepTime = 25 * 60 * 60;  // sleep time is never reached b/c it does not sleep through the night until evolve to child
+            wakeTime = TimeSpan.Parse("00:00");
+            sleepTime = TimeSpan.Parse("11:59:59");  // sleep time is never reached b/c it does not sleep through the night until evolve to child
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/BabytchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -127,8 +127,8 @@ namespace Tamagotchi
             SexExclusive = true;
             SexAvailable = Pet.Sex.Female;
             
-            wakeTime = 0 * 60 * 60;
-            sleepTime = 25 * 60 * 60;  // sleep time is never reached b/c it does not sleep through the night until evolve to child
+            wakeTime = TimeSpan.Parse("0:00");
+            sleepTime = TimeSpan.Parse("11:59:59");  // sleep time is never reached b/c it does not sleep through the night until evolve to child
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/ShirobabytchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -144,8 +144,8 @@ namespace Tamagotchi
             nature = Nature.Undetermined;
             lifeStage = LifeStage.Child;
 
-            wakeTime = 8 * 60 * 60;
-            sleepTime = 20 * 60 * 60;
+            wakeTime = TimeSpan.Parse("08:00");
+            sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MarutchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -160,8 +160,8 @@ namespace Tamagotchi
             nature = Nature.Undetermined;
             lifeStage = LifeStage.Child;
 
-            wakeTime = 9 * 60 * 60;
-            sleepTime = 20 * 60 * 60;
+            wakeTime = TimeSpan.Parse("09:00");
+            sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/KinakomotchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -180,8 +180,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Odd;
 
-            wakeTime = 9 * 60 * 60;
-            sleepTime = 20 * 60 * 60;
+            wakeTime = TimeSpan.Parse("09:00");
+            sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/IchigotchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -199,8 +199,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Even;
 
-            wakeTime = 9 * 60 * 60;
-            sleepTime = 20 * 60 * 60;
+            wakeTime = TimeSpan.Parse("09:00");
+            sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/Young_MimitchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -218,8 +218,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Odd;
 
-            wakeTime = 10 * 60 * 60;
-            sleepTime = 21 * 60 * 60;
+            wakeTime = TimeSpan.Parse("10:00");
+            sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/HinotamotchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -237,8 +237,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Even;
 
-            wakeTime = 10 * 60 * 60;
-            sleepTime = 21 * 60 * 60;
+            wakeTime = TimeSpan.Parse("10:00");
+            sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OniontchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -257,8 +257,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Odd;
             
-            wakeTime = 8 * 60 * 60;
-            sleepTime = 21 * 60 * 60;
+            wakeTime = TimeSpan.Parse("08:00");
+            sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MametchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -276,8 +276,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Even;
 
-            wakeTime = 8 * 60 * 60;
-            sleepTime = 21 * 60 * 60;
+            wakeTime = TimeSpan.Parse("08:00");
+            sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MimitchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -295,8 +295,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Odd;
 
-            wakeTime = 9 * 60 * 60;
-            sleepTime = 22 * 60 * 60;
+            wakeTime = TimeSpan.Parse("09:00");
+            sleepTime = TimeSpan.Parse("22:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/KuchipatchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -314,8 +314,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Even;
 
-            wakeTime = 9 * 60 * 60;
-            sleepTime = 22 * 60 * 60;
+            wakeTime = TimeSpan.Parse("09:00");
+            sleepTime = TimeSpan.Parse("22:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MemetchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -330,8 +330,8 @@ namespace Tamagotchi
             nature = Nature.Naughty;
             lifeStage = LifeStage.Adult;
 
-            wakeTime = 8 * 60 * 60;
-            sleepTime = 22 * 60 * 60;
+            wakeTime = TimeSpan.Parse("08:00");
+            sleepTime = TimeSpan.Parse("22:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/TarakotchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -349,8 +349,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Odd;
 
-            wakeTime = 9 * 60 * 60;
-            sleepTime = 21 * 60 * 60;
+            wakeTime = TimeSpan.Parse("09:00");
+            sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/HanatchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -368,8 +368,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Even;
 
-            wakeTime = 9 * 60 * 60;
-            sleepTime = 21 * 60 * 60;
+            wakeTime = TimeSpan.Parse("09:00");
+            sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/AndrotchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -387,8 +387,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Odd;
 
-            wakeTime = 10 * 60 * 60;
-            sleepTime = 23 * 60 * 60;
+            wakeTime = TimeSpan.Parse("10:00");
+            sleepTime = TimeSpan.Parse("23:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MasktchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -406,8 +406,8 @@ namespace Tamagotchi
             GenerationExclusive = true;
             GenerationAvailable = Generation.Even;
 
-            wakeTime = 10 * 60 * 60;
-            sleepTime = 23 * 60 * 60;
+            wakeTime = TimeSpan.Parse("10:00");
+            sleepTime = TimeSpan.Parse("23:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/GozarutchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -425,8 +425,8 @@ namespace Tamagotchi
             SexExclusive = true;    
             SexAvailable = Pet.Sex.Male;
 
-            wakeTime = 9 * 60 * 60;
-            sleepTime = 22 * 60 * 60;
+            wakeTime = TimeSpan.Parse("09:00");
+            sleepTime = TimeSpan.Parse("22:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OyajitchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -445,8 +445,8 @@ namespace Tamagotchi
             SexExclusive = true;
             SexAvailable = Pet.Sex.Male;
 
-            wakeTime = 7 * 60 * 60;
-            sleepTime = 20 * 60 * 60;
+            wakeTime = TimeSpan.Parse("07:00");
+            sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OjitchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
@@ -464,8 +464,8 @@ namespace Tamagotchi
             SexExclusive = true;
             SexAvailable = Pet.Sex.Female;
 
-            wakeTime = 7 * 60 * 60;
-            sleepTime = 20 * 60 * 60;
+            wakeTime = TimeSpan.Parse("07:00");
+            sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OtokitchiSpriteSheet.json");
             sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);

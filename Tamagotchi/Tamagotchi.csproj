@@ -25,9 +25,8 @@
 
   <ItemGroup>
     <Folder Include="AdditionalFiles\" />
-    <Folder Include="SpriteSheetClasses\Other\" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties spritesheets_4other_4alphanumspritesheet_1json__JsonSchema="https://docs.gradle.com/enterprise/admin/schema/gradle-enterprise-config-schema-5.json" spritesheets_4other_4connectionspritesheet_1json__JsonSchema="https://docs.gradle.com/enterprise/admin/schema/gradle-enterprise-config-schema-5.json" /></VisualStudio></ProjectExtensions>
 
 </Project>
