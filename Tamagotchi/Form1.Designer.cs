@@ -45,6 +45,23 @@ namespace Tamagotchi
             this.SoundButton = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
             this.MenuButton = new System.Windows.Forms.Button();
+            this.ColorMenuPanel = new System.Windows.Forms.Panel();
+            this.ShellLabel = new System.Windows.Forms.Label();
+            this.ShellUpButton = new System.Windows.Forms.Button();
+            this.ShellDownButton = new System.Windows.Forms.Button();
+            this.DesignLabel = new System.Windows.Forms.Label();
+            this.DesignUpButton = new System.Windows.Forms.Button();
+            this.DesignDownButton = new System.Windows.Forms.Button();
+            this.CrackLabel = new System.Windows.Forms.Label();
+            this.CrackUpButton = new System.Windows.Forms.Button();
+            this.CrackDownButton = new System.Windows.Forms.Button();
+            this.LogoLabel = new System.Windows.Forms.Label();
+            this.LogoUpButton = new System.Windows.Forms.Button();
+            this.LogoDownButton = new System.Windows.Forms.Button();
+            this.ABCLabel = new System.Windows.Forms.Label();
+            this.ABCUpButton = new System.Windows.Forms.Button();
+            this.ABCDownButton = new System.Windows.Forms.Button();
+            this.ColorMenuButton = new System.Windows.Forms.Button();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Crack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Shell)).BeginInit();
@@ -53,6 +70,7 @@ namespace Tamagotchi
             ((System.ComponentModel.ISupportInitialize)(this.Screen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Frame)).BeginInit();
             this.MenuPanel.SuspendLayout();
+            this.ColorMenuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Crack
@@ -216,6 +234,180 @@ namespace Tamagotchi
             this.MenuButton.UseVisualStyleBackColor = false;
             this.MenuButton.Click += new System.EventHandler(this.ToggleMenuOpen);
             // 
+            // ColorMenuPanel
+            // 
+            this.ColorMenuPanel.BackColor = System.Drawing.Color.LightGray;
+            this.ColorMenuPanel.Controls.Add(this.ShellUpButton);
+            this.ColorMenuPanel.Controls.Add(this.ShellDownButton);
+            this.ColorMenuPanel.Controls.Add(this.ShellLabel);
+            this.ColorMenuPanel.Controls.Add(this.DesignUpButton);
+            this.ColorMenuPanel.Controls.Add(this.DesignDownButton);
+            this.ColorMenuPanel.Controls.Add(this.DesignLabel);
+            this.ColorMenuPanel.Controls.Add(this.CrackUpButton);
+            this.ColorMenuPanel.Controls.Add(this.CrackDownButton);
+            this.ColorMenuPanel.Controls.Add(this.CrackLabel);
+            this.ColorMenuPanel.Controls.Add(this.LogoUpButton);
+            this.ColorMenuPanel.Controls.Add(this.LogoDownButton);
+            this.ColorMenuPanel.Controls.Add(this.LogoLabel);
+            this.ColorMenuPanel.Controls.Add(this.ABCUpButton);
+            this.ColorMenuPanel.Controls.Add(this.ABCDownButton);
+            this.ColorMenuPanel.Controls.Add(this.ABCLabel);
+            this.ColorMenuPanel.Controls.Add(this.ColorMenuButton);
+            this.ColorMenuPanel.Location = new System.Drawing.Point(164, 0);
+            this.ColorMenuPanel.MaximumSize = new System.Drawing.Size(85, 151);
+            this.ColorMenuPanel.MinimumSize = new System.Drawing.Size(85, 23);
+            this.ColorMenuPanel.Name = "ColorMenuPanel";
+            this.ColorMenuPanel.Size = new System.Drawing.Size(85, 23);
+            this.ColorMenuPanel.TabIndex = 7;
+            // 
+            // ShellDownButton
+            // 
+            this.ShellDownButton.Location = new System.Drawing.Point(4, 27);
+            this.ShellDownButton.Name = "ShellDownButton";
+            this.ShellDownButton.Size = new System.Drawing.Size(17, 20);
+            this.ShellDownButton.TabIndex = 1;
+            this.ShellDownButton.Text = "<";
+            this.ShellDownButton.UseVisualStyleBackColor = true;
+            this.ShellDownButton.Click += new System.EventHandler(this.ShellDownButtonClicked);
+            // 
+            // ShellLabel
+            // 
+            this.ShellLabel.Location = new System.Drawing.Point(22, 30);
+            this.ShellLabel.Name = "ShellLabel";
+            this.ShellLabel.Text = "Shell";
+            // 
+            // ShellUpButton
+            // 
+            this.ShellUpButton.Location = new System.Drawing.Point(65, 27);
+            this.ShellUpButton.Name = "ShellUpButton";
+            this.ShellUpButton.Size = new System.Drawing.Size(17, 20);
+            this.ShellUpButton.TabIndex = 1;
+            this.ShellUpButton.Text = ">";
+            this.ShellUpButton.UseVisualStyleBackColor = true;
+            this.ShellUpButton.Click += new System.EventHandler(this.ShellUpButtonClicked);
+
+            // 
+            // DesignDownButton
+            // 
+            this.DesignDownButton.Location = new System.Drawing.Point(4, 52);
+            this.DesignDownButton.Name = "DesignDownButton";
+            this.DesignDownButton.Size = new System.Drawing.Size(17, 20);
+            this.DesignDownButton.TabIndex = 1;
+            this.DesignDownButton.Text = "<";
+            this.DesignDownButton.UseVisualStyleBackColor = true;
+            this.DesignDownButton.Click += new System.EventHandler(this.DesignDownButtonClicked);
+            // 
+            // DesignLabel
+            // 
+            this.DesignLabel.Location = new System.Drawing.Point(22, 55);
+            this.DesignLabel.Name = "DesignLabel";
+            this.DesignLabel.Text = "Design";
+            // 
+            // DesignUpButton
+            // 
+            this.DesignUpButton.Location = new System.Drawing.Point(65, 52);
+            this.DesignUpButton.Name = "DesignUpButton";
+            this.DesignUpButton.Size = new System.Drawing.Size(17, 20);
+            this.DesignUpButton.TabIndex = 1;
+            this.DesignUpButton.Text = ">";
+            this.DesignUpButton.UseVisualStyleBackColor = true;
+            this.DesignUpButton.Click += new System.EventHandler(this.DesignUpButtonClicked);
+
+            // 
+            // CrackDownButton
+            // 
+            this.CrackDownButton.Location = new System.Drawing.Point(4, 77);
+            this.CrackDownButton.Name = "CrackDownButton";
+            this.CrackDownButton.Size = new System.Drawing.Size(17, 20);
+            this.CrackDownButton.TabIndex = 1;
+            this.CrackDownButton.Text = "<";
+            this.CrackDownButton.UseVisualStyleBackColor = true;
+            this.CrackDownButton.Click += new System.EventHandler(this.CrackDownButtonClicked);
+            // 
+            // CrackLabel
+            // 
+            this.CrackLabel.Location = new System.Drawing.Point(22, 80);
+            this.CrackLabel.Name = "CrackLabel";
+            this.CrackLabel.Text = "Crack";
+            // 
+            // CrackUpButton
+            // 
+            this.CrackUpButton.Location = new System.Drawing.Point(65, 77);
+            this.CrackUpButton.Name = "CrackUpButton";
+            this.CrackUpButton.Size = new System.Drawing.Size(17, 20);
+            this.CrackUpButton.TabIndex = 1;
+            this.CrackUpButton.Text = ">";
+            this.CrackUpButton.UseVisualStyleBackColor = true;
+            this.CrackUpButton.Click += new System.EventHandler(this.CrackUpButtonClicked);
+
+            // 
+            // LogoDownButton
+            // 
+            this.LogoDownButton.Location = new System.Drawing.Point(4, 102);
+            this.LogoDownButton.Name = "LogoDownButton";
+            this.LogoDownButton.Size = new System.Drawing.Size(17, 20);
+            this.LogoDownButton.TabIndex = 1;
+            this.LogoDownButton.Text = "<";
+            this.LogoDownButton.UseVisualStyleBackColor = true;
+            this.LogoDownButton.Click += new System.EventHandler(this.LogoDownButtonClicked);
+            // 
+            // LogoLabel
+            // 
+            this.LogoLabel.Location = new System.Drawing.Point(22, 105);
+            this.LogoLabel.Name = "LogoLabel";
+            this.LogoLabel.Text = "Logo";
+            // 
+            // LogoUpButton
+            // 
+            this.LogoUpButton.Location = new System.Drawing.Point(65, 102);
+            this.LogoUpButton.Name = "LogoUpButton";
+            this.LogoUpButton.Size = new System.Drawing.Size(17, 20);
+            this.LogoUpButton.TabIndex = 1;
+            this.LogoUpButton.Text = ">";
+            this.LogoUpButton.UseVisualStyleBackColor = true;
+            this.LogoUpButton.Click += new System.EventHandler(this.LogoUpButtonClicked);
+
+            // 
+            // ABCDownButton
+            // 
+            this.ABCDownButton.Location = new System.Drawing.Point(4, 127);
+            this.ABCDownButton.Name = "ABCDownButton";
+            this.ABCDownButton.Size = new System.Drawing.Size(17, 20);
+            this.ABCDownButton.TabIndex = 1;
+            this.ABCDownButton.Text = "<";
+            this.ABCDownButton.UseVisualStyleBackColor = true;
+            this.ABCDownButton.Click += new System.EventHandler(this.ABCDownButtonClicked);
+            // 
+            // ABCLabel
+            // 
+            this.ABCLabel.Location = new System.Drawing.Point(22, 130);
+            this.ABCLabel.Name = "ABCLabel";
+            this.ABCLabel.Text = "Button";
+            // 
+            // ABCUpButton
+            // 
+            this.ABCUpButton.Location = new System.Drawing.Point(65, 127);
+            this.ABCUpButton.Name = "ABCUpButton";
+            this.ABCUpButton.Size = new System.Drawing.Size(17, 20);
+            this.ABCUpButton.TabIndex = 1;
+            this.ABCUpButton.Text = ">";
+            this.ABCUpButton.UseVisualStyleBackColor = true;
+            this.ABCUpButton.Click += new System.EventHandler(this.ABCUpButtonClicked);
+
+            // 
+            // ColorMenuButton
+            // 
+            this.ColorMenuButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ColorMenuButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ColorMenuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ColorMenuButton.Location = new System.Drawing.Point(175, 0);
+            this.ColorMenuButton.Name = "ColorMenuButton";
+            this.ColorMenuButton.Size = new System.Drawing.Size(85, 23);
+            this.ColorMenuButton.TabIndex = 0;
+            this.ColorMenuButton.Text = "Colors";
+            this.ColorMenuButton.UseVisualStyleBackColor = false;
+            this.ColorMenuButton.Click += new System.EventHandler(this.ToggleColorMenuOpen);
+            // 
             // GameTimer
             // 
             this.GameTimer.Tick += new System.EventHandler(this.GameTick);
@@ -227,6 +419,7 @@ namespace Tamagotchi
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(249, 293);
             this.Controls.Add(this.MenuPanel);
+            this.Controls.Add(this.ColorMenuPanel);
             this.Controls.Add(this.buttonC);
             this.Controls.Add(this.buttonB);
             this.Controls.Add(this.buttonA);
@@ -246,6 +439,7 @@ namespace Tamagotchi
             ((System.ComponentModel.ISupportInitialize)(this.Screen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Frame)).EndInit();
             this.MenuPanel.ResumeLayout(false);
+            this.ColorMenuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,6 +461,23 @@ namespace Tamagotchi
         private Button MenuButton;
         private Button PauseButton;
         private Button SoundButton;
+        private Panel ColorMenuPanel;
+        private Label ShellLabel;
+        private Button ShellUpButton;
+        private Button ShellDownButton;
+        private Label DesignLabel;
+        private Button DesignUpButton;
+        private Button DesignDownButton;
+        private Label CrackLabel;
+        private Button CrackUpButton;
+        private Button CrackDownButton;
+        private Label LogoLabel;
+        private Button LogoUpButton;
+        private Button LogoDownButton;
+        private Label ABCLabel;
+        private Button ABCUpButton;
+        private Button ABCDownButton;
+        private Button ColorMenuButton;
         private System.Windows.Forms.Timer GameTimer;
     }
 }

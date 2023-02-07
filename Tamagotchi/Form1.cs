@@ -1,10 +1,13 @@
 using System;
 using System.ComponentModel;
 using System.Drawing.Imaging;
+using System.Resources;
 using System.Security.Policy;
 using System.Text.Json;
 using Tamagotchi.CustomComponents;
 using Tamagotchi.SpriteSheetClasses.Species;
+
+using Resources = global::Tamagotchi.Properties.Resources;
 
 namespace Tamagotchi
 {
@@ -18,6 +21,8 @@ namespace Tamagotchi
         private const int millisecondsPerTick = 100;
         private bool isMenuOpen;
         private bool toggleMenu;
+        private bool isColorMenuOpen;
+        private bool toggleColorMenu;
         private bool isPaused = false;
         private bool toggleBMenu;
         private bool isOpenBMenu = false;
@@ -533,6 +538,23 @@ namespace Tamagotchi
                 toggleMenu = false;
             }
 
+            if (toggleColorMenu)
+            {
+                if (isColorMenuOpen)
+                {
+                    ColorMenuPanel.Size = ColorMenuPanel.MinimumSize;
+                    isColorMenuOpen = false;
+                    Console.WriteLine("ColorMenu Closed");
+                }
+                else
+                {
+                    ColorMenuPanel.Size = ColorMenuPanel.MaximumSize;
+                    isColorMenuOpen = true;
+                    Console.WriteLine("ColorMenu Opened");
+                }
+                toggleColorMenu = false;
+            }
+
             if (toggleBMenu)
             {
                 toggleBMenu = false;
@@ -554,9 +576,72 @@ namespace Tamagotchi
             Console.WriteLine("Menu Toggled");
         }
 
+        private void ToggleColorMenuOpen(object sender, EventArgs e)
+        {
+            toggleColorMenu = true;
+            Console.WriteLine("ColorMenu Toggled");
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             GameTimer.Start();
+        }
+
+        
+        private Bitmap[] shells = { Resources.Shell_Purple, Resources.Shell_Peach, Resources.Shell_Lime };
+        private int shellIndex = 0;
+
+        private void ShellDownButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Down Button Clicked");
+            shellIndex--;
+            if (shellIndex < 0)
+            {
+                shellIndex = shells.Length - 1;
+            }
+            Shell.Image = shells[shellIndex];
+        }
+        private void ShellUpButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Up Button Clicked");
+            shellIndex++;
+            if (shellIndex >= shells.Length)
+            {
+                shellIndex = 0;
+            }
+            Shell.Image = shells[shellIndex];
+        }
+        private void DesignDownButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Up/Down Button Clicked");
+        }
+        private void DesignUpButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Up/Down Button Clicked");
+        }
+        private void CrackDownButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Up/Down Button Clicked");
+        }
+        private void CrackUpButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Up/Down Button Clicked");
+        }
+        private void LogoDownButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Up/Down Button Clicked");
+        }
+        private void LogoUpButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Up/Down Button Clicked");
+        }
+        private void ABCDownButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Up/Down Button Clicked");
+        }
+        private void ABCUpButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Up/Down Button Clicked");
         }
     }
 }
