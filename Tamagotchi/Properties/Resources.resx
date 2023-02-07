@@ -121,17 +121,71 @@
   <data name="Base_Frame" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Base_Frame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Crack_Blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crack_Blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Crack_Orange" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crack_Orange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Crack_Purple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Crack_Purple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Design_Spots" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Design_Spots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Design_Grid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Design_Grid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Design_Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Design_Hearts.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Design_Spots_Cyan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Design_Spots_Cyan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Design_Spots_Purple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Design_Spots_Purple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Logo_Outline_Cyan" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo_Outline_Cyan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Menu_Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Menu_Bold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Logo_Outline_Magenta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo_Outline_Magenta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Logo_Outline_Purple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo_Outline_Purple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_Attention" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu_Attention.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_Book" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu_Book.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_Chef" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu_Chef.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_Games" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu_Games.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_Heart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu_Heart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_Lamp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu_Lamp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_Medicine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu_Medicine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_Scale" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu_Scale.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_Talk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu_Talk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_Toilet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menu_Toilet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Shell_Lime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Shell_Lime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Shell_Peach" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Shell_Peach.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Shell_Purple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Shell_Purple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

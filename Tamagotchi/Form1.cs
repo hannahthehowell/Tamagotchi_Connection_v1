@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.Security.Policy;
 using System.Text.Json;
+using Tamagotchi.CustomComponents;
 using Tamagotchi.SpriteSheetClasses.Species;
 
 namespace Tamagotchi
@@ -14,11 +15,14 @@ namespace Tamagotchi
 
         private int numTicks = 0;
         private const int ticksPerFrame = 4;
+        private const int millisecondsPerTick = 100;
         private bool isMenuOpen;
         private bool toggleMenu;
         private bool isPaused = false;
         private bool toggleBMenu;
         private bool isOpenBMenu = false;
+
+        private bool petIsIdle = false;
 
         private AlphaNumSprites alnumSprites;
         private ConnectionSprites connectionSprites;
@@ -80,12 +84,12 @@ namespace Tamagotchi
             toggleMenu = true;
             Console.WriteLine("Reset Button Clicked");
             pet = new Pet();
+            petIsIdle = true;
         }
 
         private void AButtonClicked(object sender, EventArgs e)
         {
             Console.WriteLine("A Button Clicked");
-
         }
 
         private void BButtonClicked(object sender, EventArgs e)
@@ -151,8 +155,8 @@ namespace Tamagotchi
         }
         private void drawSpriteFromMiddle(Graphics canvas, int[][] sprite, int centerCellX, int centerCellY)
         {
-            int startingCellX = centerCellX - sprite.Length/2;
-            int startingCellY = centerCellY - sprite[0].Length / 2;
+            int startingCellX = centerCellX - sprite[0].Length / 2;
+            int startingCellY = centerCellY - sprite.Length / 2;
             drawSprite(canvas, sprite, startingCellX, startingCellY);
         }
         private void drawSpriteFromTopAtMiddle(Graphics canvas, int[][] sprite, int startingCellY)
@@ -225,7 +229,6 @@ namespace Tamagotchi
             {
                 string ch = c.ToString();
                 int[][] sprite;
-                int letterOffset = 0;
 
                 if (ch == "?")
                 {
@@ -234,7 +237,6 @@ namespace Tamagotchi
                 else if (ch == "!")
                 {
                     sprite = alnumSprites.exclamation;
-                    letterOffset = 2;
                 }
                 else if (alnumSprites.GetType().GetProperty(ch) == null)
                 {
@@ -246,7 +248,7 @@ namespace Tamagotchi
                     sprite = (int[][])alnumSprites.GetType().GetProperty(ch).GetValue(alnumSprites, null);
                 }
                 
-                drawSpriteAtBottom(canvas, sprite, startingX + letterOffset);
+                drawSpriteAtBottom(canvas, sprite, startingX);
                 startingX = startingX + ScreenSettings.cellsPerLetterWidth;
             }
         }
@@ -397,7 +399,7 @@ namespace Tamagotchi
                 digit = hourAMPM.ToString()[0].ToString();
                 propName = "large_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                innerSprite = addToSprite(innerSprite, sprite2add, 8, 2);
+                innerSprite = addToSprite(innerSprite, sprite2add, 8, 1);
                 digit = hourAMPM.ToString()[1].ToString();
                 propName = "large_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
@@ -487,20 +489,22 @@ namespace Tamagotchi
                     return;
                 }
 
-                if (numTicks >= 4 * ticksPerFrame)
+                if (petIsIdle)
                 {
-                    numTicks = 0;
-                }
+                    if (numTicks >= 4 * ticksPerFrame)
+                    {
+                        numTicks = 0;
+                    }
 
-                if (numTicks < 2 * ticksPerFrame)
-                {
-                    drawSpriteAtBottomCenter(canvas, pet.speciesInfo.sprites.idle1);
+                    if (numTicks < 2 * ticksPerFrame)
+                    {
+                        drawSpriteAtBottomCenter(canvas, pet.speciesInfo.sprites.idle1);
+                    }
+                    else if (numTicks < 4 * ticksPerFrame)
+                    {
+                        drawSpriteAtBottomCenter(canvas, pet.speciesInfo.sprites.idle2);
+                    }
                 }
-                else if (numTicks < 4 * ticksPerFrame)
-                {
-                    drawSpriteAtBottomCenter(canvas, pet.speciesInfo.sprites.idle2);
-                }
-
             }
         }
 
@@ -518,7 +522,7 @@ namespace Tamagotchi
                 {
                     MenuPanel.Size = MenuPanel.MinimumSize;
                     isMenuOpen = false;
-                    Console.WriteLine("Menu Closed"); 
+                    Console.WriteLine("Menu Closed");
                 }
                 else
                 {
@@ -534,6 +538,10 @@ namespace Tamagotchi
                 toggleBMenu = false;
                 isOpenBMenu = !isOpenBMenu;
             }
+
+            petIsIdle = true;
+            
+            
 
 
             // redraws the canvas each tick

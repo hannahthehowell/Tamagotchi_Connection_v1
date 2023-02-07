@@ -25,7 +25,7 @@ namespace Tamagotchi
 
         public double hunger = 0;
         public double happiness = 0;
-        public double timeAlive = 0;
+        public double minutesAlive = 0;
         public bool isAging = false;
 
         public string givenName = "";
@@ -37,6 +37,9 @@ namespace Tamagotchi
         public SpeciesInfo.Nature parent2Nature = SpeciesInfo.Nature.Undetermined;
         public bool isChildOfSenior = false;
         public int generationNumber = 0;
+
+        public bool hasBaby = false;
+        public int minutesWithBaby = 0;
 
         public int numMentalMistakes = 0;
         public int numPhysicalMistakes = 0;
@@ -179,12 +182,6 @@ namespace Tamagotchi
         {
             speciesInfo.lifeStage = SpeciesInfo.LifeStage.Baby;
         }
-
-        public void SetName(string name) { givenName = name; }
-
-        public void BeginAging() { isAging = true; }
-
-        public void StopAging() { isAging = false; }
 
         public void Evolve()
         {

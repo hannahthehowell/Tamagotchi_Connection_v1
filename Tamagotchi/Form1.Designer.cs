@@ -80,7 +80,7 @@ namespace Tamagotchi
             // Design
             // 
             this.Design.BackColor = System.Drawing.Color.Transparent;
-            this.Design.Image = global::Tamagotchi.Properties.Resources.Design_Spots;
+            this.Design.Image = global::Tamagotchi.Properties.Resources.Design_Spots_Purple;
             this.Design.Location = new System.Drawing.Point(21, 53);
             this.Design.Name = "Design";
             this.Design.Size = new System.Drawing.Size(212, 194);
@@ -91,7 +91,7 @@ namespace Tamagotchi
             // Logo_Outline
             // 
             this.Logo_Outline.BackColor = System.Drawing.Color.Transparent;
-            this.Logo_Outline.Image = global::Tamagotchi.Properties.Resources.Logo_Outline_Cyan;
+            this.Logo_Outline.Image = global::Tamagotchi.Properties.Resources.Logo_Outline_Purple;
             this.Logo_Outline.Location = new System.Drawing.Point(66, 30);
             this.Logo_Outline.Name = "Logo_Outline";
             this.Logo_Outline.Size = new System.Drawing.Size(121, 34);
