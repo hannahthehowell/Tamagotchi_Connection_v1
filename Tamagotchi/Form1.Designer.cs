@@ -37,6 +37,16 @@ namespace Tamagotchi
             this.Logo_Outline = new Tamagotchi.CustomComponents.TransparentPictureBox();
             this.Screen = new Tamagotchi.CustomComponents.TransparentPictureBox();
             this.Frame = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Menu_Scale = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Menu_Chef = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Menu_Toilet = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Menu_Games = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Menu_Heart = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Menu_Talk = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Menu_Medicine = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Menu_Lamp = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Menu_Book = new Tamagotchi.CustomComponents.TransparentPictureBox();
+            this.Menu_Attention = new Tamagotchi.CustomComponents.TransparentPictureBox();
             this.buttonA = new Tamagotchi.CustomComponents.ButtonEllipse();
             this.buttonB = new Tamagotchi.CustomComponents.ButtonEllipse();
             this.buttonC = new Tamagotchi.CustomComponents.ButtonEllipse();
@@ -52,6 +62,16 @@ namespace Tamagotchi
             ((System.ComponentModel.ISupportInitialize)(this.Logo_Outline)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Screen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Frame)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Scale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Chef)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Toilet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Games)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Heart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Talk)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Medicine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Lamp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Book)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Attention)).BeginInit();
             this.MenuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +100,7 @@ namespace Tamagotchi
             // Design
             // 
             this.Design.BackColor = System.Drawing.Color.Transparent;
-            this.Design.Image = global::Tamagotchi.Properties.Resources.Design_Spots;
+            this.Design.Image = global::Tamagotchi.Properties.Resources.Design_Spots_Purple;
             this.Design.Location = new System.Drawing.Point(21, 53);
             this.Design.Name = "Design";
             this.Design.Size = new System.Drawing.Size(212, 194);
@@ -91,7 +111,7 @@ namespace Tamagotchi
             // Logo_Outline
             // 
             this.Logo_Outline.BackColor = System.Drawing.Color.Transparent;
-            this.Logo_Outline.Image = global::Tamagotchi.Properties.Resources.Logo_Outline_Cyan;
+            this.Logo_Outline.Image = global::Tamagotchi.Properties.Resources.Logo_Outline_Purple;
             this.Logo_Outline.Location = new System.Drawing.Point(66, 30);
             this.Logo_Outline.Name = "Logo_Outline";
             this.Logo_Outline.Size = new System.Drawing.Size(121, 34);
@@ -119,6 +139,116 @@ namespace Tamagotchi
             this.Frame.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Frame.TabIndex = 6;
             this.Frame.TabStop = false;
+            // 
+            // Menu_Scale
+            // 
+            this.Menu_Scale.BackColor = System.Drawing.Color.Transparent;
+            this.Menu_Scale.Image = global::Tamagotchi.Properties.Resources.Menu_Scale;
+            this.Menu_Scale.Location = new System.Drawing.Point(21, 53);
+            this.Menu_Scale.Name = "Menu_Scale";
+            this.Menu_Scale.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Menu_Scale.TabIndex = 7;
+            this.Menu_Scale.TabStop = false;
+            this.Menu_Scale.Visible = false;
+            // 
+            // Menu_Chef
+            // 
+            this.Menu_Chef.BackColor = System.Drawing.Color.Transparent;
+            this.Menu_Chef.Image = global::Tamagotchi.Properties.Resources.Menu_Chef;
+            this.Menu_Chef.Location = new System.Drawing.Point(21, 53);
+            this.Menu_Chef.Name = "Menu_Chef";
+            this.Menu_Chef.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Menu_Chef.TabIndex = 8;
+            this.Menu_Chef.TabStop = false;
+            this.Menu_Chef.Visible = false;
+            // 
+            // Menu_Toilet
+            // 
+            this.Menu_Toilet.BackColor = System.Drawing.Color.Transparent;
+            this.Menu_Toilet.Image = global::Tamagotchi.Properties.Resources.Menu_Toilet;
+            this.Menu_Toilet.Location = new System.Drawing.Point(21, 53);
+            this.Menu_Toilet.Name = "Menu_Toilet";
+            this.Menu_Toilet.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Menu_Toilet.TabIndex = 9;
+            this.Menu_Toilet.TabStop = false;
+            this.Menu_Toilet.Visible = false;
+            // 
+            // Menu_Games
+            // 
+            this.Menu_Games.BackColor = System.Drawing.Color.Transparent;
+            this.Menu_Games.Image = global::Tamagotchi.Properties.Resources.Menu_Games;
+            this.Menu_Games.Location = new System.Drawing.Point(21, 53);
+            this.Menu_Games.Name = "Menu_Games";
+            this.Menu_Games.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Menu_Games.TabIndex = 10;
+            this.Menu_Games.TabStop = false;
+            this.Menu_Games.Visible = false;
+            // 
+            // Menu_Heart
+            // 
+            this.Menu_Heart.BackColor = System.Drawing.Color.Transparent;
+            this.Menu_Heart.Image = global::Tamagotchi.Properties.Resources.Menu_Heart;
+            this.Menu_Heart.Location = new System.Drawing.Point(21, 53);
+            this.Menu_Heart.Name = "Menu_Heart";
+            this.Menu_Heart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Menu_Heart.TabIndex = 11;
+            this.Menu_Heart.TabStop = false;
+            this.Menu_Heart.Visible = false;
+            // 
+            // Menu_Talk
+            // 
+            this.Menu_Talk.BackColor = System.Drawing.Color.Transparent;
+            this.Menu_Talk.Image = global::Tamagotchi.Properties.Resources.Menu_Talk;
+            this.Menu_Talk.Location = new System.Drawing.Point(21, 53);
+            this.Menu_Talk.Name = "Menu_Talk";
+            this.Menu_Talk.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Menu_Talk.TabIndex = 12;
+            this.Menu_Talk.TabStop = false;
+            this.Menu_Talk.Visible = false;
+            // 
+            // Menu_Medicine
+            // 
+            this.Menu_Medicine.BackColor = System.Drawing.Color.Transparent;
+            this.Menu_Medicine.Image = global::Tamagotchi.Properties.Resources.Menu_Medicine;
+            this.Menu_Medicine.Location = new System.Drawing.Point(21, 53);
+            this.Menu_Medicine.Name = "Menu_Medicine";
+            this.Menu_Medicine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Menu_Medicine.TabIndex = 13;
+            this.Menu_Medicine.TabStop = false;
+            this.Menu_Medicine.Visible = false;
+            // 
+            // Menu_Lamp
+            // 
+            this.Menu_Lamp.BackColor = System.Drawing.Color.Transparent;
+            this.Menu_Lamp.Image = global::Tamagotchi.Properties.Resources.Menu_Lamp;
+            this.Menu_Lamp.Location = new System.Drawing.Point(21, 53);
+            this.Menu_Lamp.Name = "Menu_Lamp";
+            this.Menu_Lamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Menu_Lamp.TabIndex = 14;
+            this.Menu_Lamp.TabStop = false;
+            this.Menu_Lamp.Visible = false;
+            // 
+            // Menu_Book
+            // 
+            this.Menu_Book.BackColor = System.Drawing.Color.Transparent;
+            this.Menu_Book.Image = global::Tamagotchi.Properties.Resources.Menu_Book;
+            this.Menu_Book.Location = new System.Drawing.Point(21, 53);
+            this.Menu_Book.Name = "DesMenu_Bookign";
+            this.Menu_Book.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Menu_Book.TabIndex = 15;
+            this.Menu_Book.TabStop = false;
+            this.Menu_Book.Visible = false;
+            // 
+            // Menu_Attention
+            // 
+            this.Menu_Attention.BackColor = System.Drawing.Color.Transparent;
+            this.Menu_Attention.Image = global::Tamagotchi.Properties.Resources.Menu_Attention;
+            this.Menu_Attention.Location = new System.Drawing.Point(21, 53);
+            this.Menu_Attention.Name = "Menu_Attention";
+            this.Menu_Attention.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Menu_Attention.TabIndex = 16;
+            this.Menu_Attention.TabStop = false;
+            this.Menu_Attention.Visible = false;
             // 
             // buttonA
             // 
@@ -230,6 +360,16 @@ namespace Tamagotchi
             this.Controls.Add(this.buttonC);
             this.Controls.Add(this.buttonB);
             this.Controls.Add(this.buttonA);
+            this.Controls.Add(this.Menu_Scale);
+            this.Controls.Add(this.Menu_Chef);
+            this.Controls.Add(this.Menu_Toilet);
+            this.Controls.Add(this.Menu_Games);
+            this.Controls.Add(this.Menu_Heart);
+            this.Controls.Add(this.Menu_Talk);
+            this.Controls.Add(this.Menu_Medicine);
+            this.Controls.Add(this.Menu_Lamp);
+            this.Controls.Add(this.Menu_Book);
+            this.Controls.Add(this.Menu_Attention);
             this.Controls.Add(this.Screen);
             this.Controls.Add(this.Frame);
             this.Controls.Add(this.Logo_Outline);
@@ -245,6 +385,16 @@ namespace Tamagotchi
             ((System.ComponentModel.ISupportInitialize)(this.Logo_Outline)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Screen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Frame)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Scale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Chef)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Toilet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Games)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Heart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Talk)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Medicine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Lamp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Book)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Menu_Attention)).EndInit();
             this.MenuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -262,6 +412,16 @@ namespace Tamagotchi
         private TransparentPictureBox Logo_Outline;
         private TransparentPictureBox Frame;
         private TransparentPictureBox Screen;
+        private TransparentPictureBox Menu_Scale;
+        private TransparentPictureBox Menu_Chef;
+        private TransparentPictureBox Menu_Toilet;
+        private TransparentPictureBox Menu_Games;
+        private TransparentPictureBox Menu_Heart;
+        private TransparentPictureBox Menu_Talk;
+        private TransparentPictureBox Menu_Medicine;
+        private TransparentPictureBox Menu_Lamp;
+        private TransparentPictureBox Menu_Book;
+        private TransparentPictureBox Menu_Attention; 
         private Panel MenuPanel;
         private Button ResetButton;
         private Button MenuButton;
