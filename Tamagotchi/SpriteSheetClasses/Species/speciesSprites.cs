@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tamagotchi.SpriteSheetClasses.Species
 {
-    internal class speciesSprites
+    internal class SpeciesSprites
     {
         public int[][] angry { get; set; }
         public int[][] back { get; set; }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Tamagotchi.SpriteSheetClasses.Species;
+using static Tamagotchi.SpriteSheetClasses.Species.SpriteLocation;
 
 namespace Tamagotchi
 {
@@ -81,7 +82,9 @@ namespace Tamagotchi
         public TimeSpan wakeTime;
         public TimeSpan sleepTime;
 
-        public speciesSprites sprites;
+        public SpeciesSprites sprites;
+        public SpriteLocation[] idleSequence1;
+        public SpriteLocation[] idleSequence2;
 
         public SpeciesInfo()
         {
@@ -90,7 +93,14 @@ namespace Tamagotchi
             lifeStage = LifeStage.Egg;
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/EggSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
+
+            idleSequence1 = new SpriteLocation[] {
+                new SpriteLocation(19, 11, spriteNames.idle1),
+                new SpriteLocation(19, 11, spriteNames.idle1),
+                new SpriteLocation(21, 10, spriteNames.idle2),
+                new SpriteLocation(21, 10, spriteNames.idle2)
+            };
         }
     }
 
@@ -112,7 +122,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("11:59:59");  // sleep time is never reached b/c it does not sleep through the night until evolve to child
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/BabytchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -127,11 +137,11 @@ namespace Tamagotchi
             SexExclusive = true;
             SexAvailable = Pet.Sex.Female;
             
-            wakeTime = TimeSpan.Parse("0:00");
+            wakeTime = TimeSpan.Parse("00:00");
             sleepTime = TimeSpan.Parse("11:59:59");  // sleep time is never reached b/c it does not sleep through the night until evolve to child
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/ShirobabytchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -148,7 +158,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MarutchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -164,7 +174,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/KinakomotchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -184,7 +194,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/IchigotchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -203,7 +213,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/Young_MimitchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -222,7 +232,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/HinotamotchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -241,7 +251,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OniontchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -261,7 +271,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MametchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -280,7 +290,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MimitchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -299,7 +309,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("22:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/KuchipatchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -318,7 +328,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("22:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MemetchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -334,7 +344,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("22:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/TarakotchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -353,7 +363,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/HanatchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -372,7 +382,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("21:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/AndrotchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -391,7 +401,61 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("23:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/MasktchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
+
+            idleSequence1 = new SpriteLocation[] {  // sequence to go left and jump, then right and crouch
+                new SpriteLocation(9, 9, spriteNames.idle1),
+                new SpriteLocation(8, 9, spriteNames.idle2),
+                new SpriteLocation(9, 7, spriteNames.idle1),
+                new SpriteLocation(8, 7, spriteNames.idle2),
+                new SpriteLocation(9, 7, spriteNames.idle1),
+                new SpriteLocation(8, 7, spriteNames.idle2),
+                new SpriteLocation(9, 1, spriteNames.idle1),
+                new SpriteLocation(9, 1, spriteNames.idle1),
+                new SpriteLocation(5, 1, spriteNames.idle2),
+                new SpriteLocation(8, 1, spriteNames.idle2),
+                new SpriteLocation(11, 1, spriteNames.eyes_closed),
+                new SpriteLocation(8, 1, spriteNames.idle2),
+                new SpriteLocation(11, 1, spriteNames.eyes_closed),
+                new SpriteLocation(8, 1, spriteNames.idle2),
+                new SpriteLocation(9, 5, spriteNames.idle1),
+                new SpriteLocation(8, 5, spriteNames.idle2),
+                new SpriteLocation(9, 9, spriteNames.idle1),
+                new SpriteLocation(8, 9, spriteNames.idle2),
+                new SpriteLocation(9, 11, spriteNames.idle1),
+                new SpriteLocation(8, 13, spriteNames.idle2),
+                new SpriteLocation(9, 13, spriteNames.idle1),
+                new SpriteLocation(8, 17, spriteNames.idle2),
+                new SpriteLocation(11, 17, spriteNames.eyes_closed),
+                new SpriteLocation(8, 17, spriteNames.idle2),
+                new SpriteLocation(11, 17, spriteNames.eyes_closed),
+                new SpriteLocation(8, 17, spriteNames.idle2),
+                new SpriteLocation(9, 13, spriteNames.idle1),
+                new SpriteLocation(5, 11, spriteNames.idle2),
+                new SpriteLocation(9, 9, spriteNames.idle1),
+                new SpriteLocation(8, 9, spriteNames.idle2),
+                new SpriteLocation(9, 9, spriteNames.idle1),
+                new SpriteLocation(8, 9, spriteNames.idle2)
+            };
+
+            idleSequence2 = new SpriteLocation[] {  // sequence to go right and crouch
+                new SpriteLocation(9, 9, spriteNames.idle1),
+                new SpriteLocation(8, 9, spriteNames.idle2),
+                new SpriteLocation(9, 11, spriteNames.idle1),
+                new SpriteLocation(8, 13, spriteNames.idle2),
+                new SpriteLocation(9, 13, spriteNames.idle1),
+                new SpriteLocation(8, 17, spriteNames.idle2),
+                new SpriteLocation(11, 17, spriteNames.eyes_closed),
+                new SpriteLocation(8, 17, spriteNames.idle2),
+                new SpriteLocation(11, 17, spriteNames.eyes_closed),
+                new SpriteLocation(8, 17, spriteNames.idle2),
+                new SpriteLocation(9, 13, spriteNames.idle1),
+                new SpriteLocation(5, 11, spriteNames.idle2),
+                new SpriteLocation(9, 9, spriteNames.idle1),
+                new SpriteLocation(8, 9, spriteNames.idle2),
+                new SpriteLocation(9, 9, spriteNames.idle1),
+                new SpriteLocation(8, 9, spriteNames.idle2)
+            };
         }
     }
 
@@ -410,7 +474,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("23:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/GozarutchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -429,7 +493,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("22:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OyajitchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -449,7 +513,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OjitchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 
@@ -468,7 +532,7 @@ namespace Tamagotchi
             sleepTime = TimeSpan.Parse("20:00");
 
             string jsonString = File.ReadAllText("../../../SpriteSheets/Species/OtokitchiSpriteSheet.json");
-            sprites = JsonSerializer.Deserialize<speciesSprites>(jsonString);
+            sprites = JsonSerializer.Deserialize<SpeciesSprites>(jsonString);
         }
     }
 }

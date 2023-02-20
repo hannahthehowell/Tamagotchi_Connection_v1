@@ -14,7 +14,7 @@ namespace Tamagotchi
         private TimeSpan localTime;
 
         private int numTicks = 0;
-        private const int ticksPerFrame = 4;
+        private const double ticksPerFrame = 4.5;
         private const int millisecondsPerTick = 100;
         private bool isMenuOpen;
         private bool toggleMenu;
@@ -23,6 +23,7 @@ namespace Tamagotchi
         private bool isOpenBMenu = false;
 
         private bool petIsIdle = false;
+        private int idleAnimationChoice = 0;
 
         private AlphaNumSprites alnumSprites;
         private ConnectionSprites connectionSprites;
@@ -32,7 +33,7 @@ namespace Tamagotchi
         private MiscSprites miscSprites;
 
         private Pet pet;
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -40,8 +41,11 @@ namespace Tamagotchi
             new ScreenSettings();
             populateSpriteSheets();
 
-            pet = new Pet();
-        }
+            // pet = new Pet();
+            // For testing
+            pet = new TestTama();
+            petIsIdle = true;
+    }
 
         private void populateSpriteSheets()
         {
@@ -90,18 +94,29 @@ namespace Tamagotchi
         private void AButtonClicked(object sender, EventArgs e)
         {
             Console.WriteLine("A Button Clicked");
+            if (!isPaused)
+            {
+
+            }
         }
 
         private void BButtonClicked(object sender, EventArgs e)
         {
             Console.WriteLine("B Button Clicked");
             toggleBMenu = true;
+            if (!isPaused)
+            {
+                
+            }
         }
 
         private void CButtonClicked(object sender, EventArgs e)
         {
             Console.WriteLine("C Button Clicked");
+            if (!isPaused)
+            {
 
+            }
         }
 
         private void drawWholeScreen(Graphics canvas, int[][] sprite)
@@ -348,7 +363,7 @@ namespace Tamagotchi
                 propName = "small_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
                 menuScreen = addToSprite(menuScreen, sprite2add, 0, 19);
-                digit = month.ToString()[1].ToString();
+                digit = day.ToString()[1].ToString();
                 propName = "small_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
                 menuScreen = addToSprite(menuScreen, sprite2add, 0, 23);
@@ -477,33 +492,29 @@ namespace Tamagotchi
             Graphics canvas = e.Graphics;
             if (pet != null)
             {
-                if (isPaused)
-                {
-                    drawPauseScreen(canvas);
-                    return;
-                }
-
                 if (isOpenBMenu)
                 {
                     drawBMenu(canvas);
                     return;
                 }
 
+                if (isPaused)
+                {
+                    drawPauseScreen(canvas);
+                    return;
+                }
+
                 if (petIsIdle)
                 {
-                    if (numTicks >= 4 * ticksPerFrame)
-                    {
-                        numTicks = 0;
-                    }
-
-                    if (numTicks < 2 * ticksPerFrame)
-                    {
-                        drawSpriteAtBottomCenter(canvas, pet.speciesInfo.sprites.idle1);
-                    }
-                    else if (numTicks < 4 * ticksPerFrame)
-                    {
-                        drawSpriteAtBottomCenter(canvas, pet.speciesInfo.sprites.idle2);
-                    }
+                    int[][] screen = getBlankSpriteScreen();
+                    SpriteLocation[] spriteSequence = pet.speciesInfo.idleSequence1;
+                    int frameNum = (int)(numTicks / ticksPerFrame);
+                    int currFrameIdx = frameNum % spriteSequence.Length;
+                    SpriteLocation currFrameInfo = spriteSequence[currFrameIdx];
+                    string toAddName = currFrameInfo.spriteName.ToString();
+                    int[][] sprite2add = (int[][])pet.speciesInfo.sprites.GetType().GetProperty(toAddName).GetValue(pet.speciesInfo.sprites, null);
+                    screen = addToSprite(screen, sprite2add, currFrameInfo.y, currFrameInfo.x);
+                    drawWholeScreen(canvas, screen);
                 }
             }
         }
@@ -538,12 +549,7 @@ namespace Tamagotchi
                 toggleBMenu = false;
                 isOpenBMenu = !isOpenBMenu;
             }
-
-            petIsIdle = true;
-            
-            
-
-
+         
             // redraws the canvas each tick
             Screen.Invalidate();
         }
