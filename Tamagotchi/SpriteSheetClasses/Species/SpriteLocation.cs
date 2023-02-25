@@ -77,12 +77,14 @@ namespace Tamagotchi.SpriteSheetClasses.Species
         }
 
         public spriteNames spriteName;
+        public bool isMirrored;
 
-        public SpriteLocation(int y, int x, spriteNames spriteName)
+        public SpriteLocation(int y, int x, spriteNames spriteName, bool isMirrored=false)
         {
             this.y = y;
             this.x = x;
             this.spriteName = spriteName;
+            this.isMirrored = isMirrored;
         }
     }
 }
