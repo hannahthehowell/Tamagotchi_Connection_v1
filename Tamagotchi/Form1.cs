@@ -119,13 +119,13 @@ namespace Tamagotchi
             }
         }
 
-        private void drawWholeScreen(Graphics canvas, int[][] sprite)
+        private void drawWholeScreen(Graphics canvas, int[][] screen)
         {
-            for (int y = 0; y < sprite.Length; y++)
+            for (int y = 0; y < screen.Length; y++)
             {
-                for (int x = 0; x < sprite[y].Length; x++)
+                for (int x = 0; x < screen[y].Length; x++)
                 {
-                    if (sprite[y][x] == 1)
+                    if (screen[y][x] == 1)
                     {
                         // draws one filled pixel
                         canvas.FillRectangle(Brushes.Black, new Rectangle
@@ -139,68 +139,59 @@ namespace Tamagotchi
                 }
             }
         }
-        private void drawSprite(Graphics canvas, int[][] sprite, int startingCellX, int startingCellY)
+        private int[][] addSpriteToScreen(int[][] screen, int[][] toAdd, int topY, int leftX)
         {
-            for (int y = 0; y < sprite.Length; y++)
+            for (int row = 0; row < toAdd.Length; row++)
             {
-                for (int x = 0; x < sprite[y].Length; x++)
+                for (int col = 0; col < toAdd[row].Length; col++)
                 {
-                    if (sprite[y][x] == 1)
-                    {
-                        // draws one filled pixel
-                        canvas.FillRectangle(Brushes.Black, new Rectangle
-                        (
-                        (startingCellX + x) * ScreenSettings.cellWidth,
-                        (startingCellY + y) * ScreenSettings.cellHeight,
-                        ScreenSettings.cellWidth,
-                        ScreenSettings.cellHeight
-                        ));
-                    }
+                    screen[row + topY][col + leftX] = toAdd[row][col];
                 }
             }
+            return screen;
         }
-        private void drawSpriteFromTopLeft(Graphics canvas, int[][] sprite, int startingCellX, int startingCellY)
+        private int[][] addSpriteFromTopLeft(int[][] screen, int[][] sprite, int startingCellY, int startingCellX)
         {
-            drawSprite(canvas, sprite, startingCellX, startingCellY);
+            return addSpriteToScreen(screen, sprite, startingCellY, startingCellX);
         }
-        private void drawSpriteFromBottomLeft(Graphics canvas, int[][] sprite, int startingCellX, int startingCellY)
+        private int[][] addSpriteFromBottomLeft(int[][] screen, int[][] sprite, int startingCellY, int startingCellX)
         {
             startingCellY = startingCellY - sprite.Length;
-            drawSprite(canvas, sprite, startingCellX, startingCellY);
+            return addSpriteToScreen(screen, sprite, startingCellY, startingCellX);
         }
-        private void drawSpriteFromMiddle(Graphics canvas, int[][] sprite, int centerCellX, int centerCellY)
+        private int[][] addSpriteFromMiddle(int[][] screen, int[][] sprite, int centerCellY, int centerCellX)
         {
             int startingCellX = centerCellX - sprite[0].Length / 2;
             int startingCellY = centerCellY - sprite.Length / 2;
-            drawSprite(canvas, sprite, startingCellX, startingCellY);
+            return addSpriteToScreen(screen, sprite, startingCellY, startingCellX);
         }
-        private void drawSpriteFromTopAtMiddle(Graphics canvas, int[][] sprite, int startingCellY)
+        private int[][] addSpriteFromTopAtMiddle(int[][] screen, int[][] sprite, int startingCellY)
         {
             int startingCellX = (ScreenSettings.screenWidthNumCells / 2) - (sprite[0].Length / 2);
-            drawSprite(canvas, sprite, startingCellX, startingCellY);
+            return addSpriteToScreen(screen, sprite, startingCellY, startingCellX);
         }
-        private void drawSpriteFromBottomAtMiddle(Graphics canvas, int[][] sprite, int startingCellY)
+        private int[][] addSpriteFromBottomAtMiddle(int[][] screen, int[][] sprite, int startingCellY)
         {
             int startingCellX = (ScreenSettings.screenWidthNumCells / 2) - (sprite[0].Length / 2);
             startingCellY = startingCellY - sprite.Length;
-            drawSprite(canvas, sprite, startingCellX, startingCellY);
+            return addSpriteToScreen(screen, sprite, startingCellY, startingCellX);
         }
-        private void drawSpriteAtBottom(Graphics canvas, int[][] sprite, int startingCellX)
+        private int[][] addSpriteAtBottom(int[][] screen, int[][] sprite, int startingCellX)
         {
             int startingCellY = ScreenSettings.screenHeightNumCells - sprite.Length;
-            drawSprite(canvas, sprite, startingCellX, startingCellY);
+            return addSpriteToScreen(screen, sprite, startingCellY, startingCellX);
         }
-        private void drawSpriteAtBottomCenter(Graphics canvas, int[][] sprite)
+        private int[][] addSpriteAtBottomCenter(int[][] screen, int[][] sprite)
         {
             int startingCellX = (ScreenSettings.screenWidthNumCells / 2) - (sprite[0].Length / 2);
             int startingCellY = ScreenSettings.screenHeightNumCells - sprite.Length;
-            drawSprite(canvas, sprite, startingCellX, startingCellY);
+            return addSpriteToScreen(screen, sprite, startingCellY, startingCellX);
         }
-        private void drawSpriteAtCenterCenter(Graphics canvas, int[][] sprite)
+        private int[][] addSpriteAtCenterCenter(int[][] screen, int[][] sprite)
         {
             int startingCellX = (ScreenSettings.screenWidthNumCells - sprite[0].Length) / 2;
             int startingCellY = (ScreenSettings.screenHeightNumCells - sprite.Length) / 2;
-            drawSprite(canvas, sprite, startingCellX, startingCellY);
+            return addSpriteToScreen(screen, sprite, startingCellY, startingCellX);
         }
 
         private int[][] mirrorSprite(int[][] sprite)
@@ -236,7 +227,7 @@ namespace Tamagotchi
             return invertedSprite;
         }
 
-        private void writeName(Graphics canvas, string name, int xOffset = 0)
+        private int[][] addNameToScreen(int[][] screen, string name, int xOffset = 0)
         {
             int startingX = 1 + xOffset;
             char[] chars = name.ToLower().ToCharArray();
@@ -263,9 +254,10 @@ namespace Tamagotchi
                     sprite = (int[][])alnumSprites.GetType().GetProperty(ch).GetValue(alnumSprites, null);
                 }
                 
-                drawSpriteAtBottom(canvas, sprite, startingX);
+                screen = addSpriteAtBottom(screen, sprite, startingX);
                 startingX = startingX + ScreenSettings.cellsPerLetterWidth;
             }
+            return screen;
         }
 
 
@@ -303,24 +295,16 @@ namespace Tamagotchi
             return screen;
         }
 
-        private int[][] addToSprite(int[][] sprite, int[][] toAdd, int topY, int leftX)
+        
+        private int[][] getPauseScreen()
         {
-            for (int row = 0; row < toAdd.Length; row++)
-            {
-                for (int col = 0; col < toAdd[row].Length; col++)
-                {
-                    sprite[row+topY][col+leftX] = toAdd[row][col];
-                }
-            }
-            return sprite;
-        }
-        private void drawPauseScreen(Graphics canvas)
-        {
-            drawSpriteFromBottomAtMiddle(canvas, pet.speciesInfo.sprites.idle1, ScreenSettings.screenHeightNumCells-9);
-            writeName(canvas, "pause", 1);
+            int[][] screen = getBlankSpriteScreen();
+            screen = addSpriteFromBottomAtMiddle(screen, pet.speciesInfo.sprites.idle1, ScreenSettings.screenHeightNumCells-9);
+            screen = addNameToScreen(screen, "pause", 1);
+            return screen;
         }
 
-        private void drawBMenu(Graphics canvas)
+        private int[][] getBMenu()
         {
             int month = localDateTime.Month;
             int day = localDateTime.Day;
@@ -342,18 +326,18 @@ namespace Tamagotchi
                 digit = month.ToString()[0].ToString();
                 propName = "small_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                menuScreen = addToSprite(menuScreen, sprite2add, 0, 5);
+                menuScreen = addSpriteToScreen(menuScreen, sprite2add, 0, 5);
                 digit = month.ToString()[1].ToString();
                 propName = "small_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                menuScreen = addToSprite(menuScreen, sprite2add, 0, 9);
+                menuScreen = addSpriteToScreen(menuScreen, sprite2add, 0, 9);
             }
             else
             {
                 digit = month.ToString();
                 propName = "small_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                menuScreen = addToSprite(menuScreen, sprite2add, 0, 9);
+                menuScreen = addSpriteToScreen(menuScreen, sprite2add, 0, 9);
             }
 
             // add day
@@ -362,18 +346,18 @@ namespace Tamagotchi
                 digit = day.ToString()[0].ToString();
                 propName = "small_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                menuScreen = addToSprite(menuScreen, sprite2add, 0, 19);
+                menuScreen = addSpriteToScreen(menuScreen, sprite2add, 0, 19);
                 digit = day.ToString()[1].ToString();
                 propName = "small_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                menuScreen = addToSprite(menuScreen, sprite2add, 0, 23);
+                menuScreen = addSpriteToScreen(menuScreen, sprite2add, 0, 23);
             }
             else
             {
                 digit = day.ToString();
                 propName = "small_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                menuScreen = addToSprite(menuScreen, sprite2add, 0, 23);
+                menuScreen = addSpriteToScreen(menuScreen, sprite2add, 0, 23);
             }
 
             // add slash in date
@@ -395,9 +379,9 @@ namespace Tamagotchi
             {
                 sprite2add = alnumSprites.time_p;
             }
-            innerSprite = addToSprite(innerSprite, sprite2add, 1, 1);
+            innerSprite = addSpriteToScreen(innerSprite, sprite2add, 1, 1);
             sprite2add = alnumSprites.time_m;
-            innerSprite = addToSprite(innerSprite, sprite2add, 1, 7);
+            innerSprite = addSpriteToScreen(innerSprite, sprite2add, 1, 7);
 
 
             // lines 15-21 time
@@ -414,18 +398,18 @@ namespace Tamagotchi
                 digit = hourAMPM.ToString()[0].ToString();
                 propName = "large_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                innerSprite = addToSprite(innerSprite, sprite2add, 8, 1);
+                innerSprite = addSpriteToScreen(innerSprite, sprite2add, 8, 1);
                 digit = hourAMPM.ToString()[1].ToString();
                 propName = "large_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                innerSprite = addToSprite(innerSprite, sprite2add, 8, 6);
+                innerSprite = addSpriteToScreen(innerSprite, sprite2add, 8, 6);
             }
             else
             {
                 digit = hourAMPM.ToString();
                 propName = "large_" + digit;
                 sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                innerSprite = addToSprite(innerSprite, sprite2add, 8, 6);
+                innerSprite = addSpriteToScreen(innerSprite, sprite2add, 8, 6);
             }
 
             // add colon between hour and minute
@@ -437,26 +421,26 @@ namespace Tamagotchi
             digit = (minute.ToString().Length == 2) ? minute.ToString()[0].ToString() : "0";
             propName = "large_" + digit;
             sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-            innerSprite = addToSprite(innerSprite, sprite2add, 8, 13);
+            innerSprite = addSpriteToScreen(innerSprite, sprite2add, 8, 13);
             
             digit = (minute.ToString().Length == 2) ? minute.ToString()[1].ToString() : minute.ToString();
             propName = "large_" + digit;
             sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-            innerSprite = addToSprite(innerSprite, sprite2add, 8, 18);
+            innerSprite = addSpriteToScreen(innerSprite, sprite2add, 8, 18);
 
             // add seconds
             digit = (second.ToString().Length == 2) ? second.ToString()[0].ToString() : "0";
             propName = "small_" + digit;
             sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-            innerSprite = addToSprite(innerSprite, sprite2add, 10, 24);
+            innerSprite = addSpriteToScreen(innerSprite, sprite2add, 10, 24);
 
             digit = (second.ToString().Length == 2) ? second.ToString()[1].ToString() : second.ToString();
             propName = "small_" + digit;
             sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-            innerSprite = addToSprite(innerSprite, sprite2add, 10, 28);
+            innerSprite = addSpriteToScreen(innerSprite, sprite2add, 10, 28);
 
             innerSprite = invertSprite(innerSprite);
-            menuScreen = addToSprite(menuScreen, innerSprite, 7, 0);
+            menuScreen = addSpriteToScreen(menuScreen, innerSprite, 7, 0);
 
 
             // construct row 3 - display hearts - 23-29 //
@@ -465,26 +449,26 @@ namespace Tamagotchi
             int secondDigit = second % 10;
             if (secondDigit >= 1 && secondDigit <= 5)
             {
-                menuScreen = addToSprite(menuScreen, sprite2add, 25, 1);
+                menuScreen = addSpriteToScreen(menuScreen, sprite2add, 25, 1);
             }
             if (secondDigit >= 2 && secondDigit <= 6)
             {
-                menuScreen = addToSprite(menuScreen, sprite2add, 25, 7);
+                menuScreen = addSpriteToScreen(menuScreen, sprite2add, 25, 7);
             }
             if (secondDigit >= 3 && secondDigit <= 7)
             {
-                menuScreen = addToSprite(menuScreen, sprite2add, 25, 13);
+                menuScreen = addSpriteToScreen(menuScreen, sprite2add, 25, 13);
             }
             if (secondDigit >= 4 && secondDigit <= 8)
             {
-                menuScreen = addToSprite(menuScreen, sprite2add, 25, 19);
+                menuScreen = addSpriteToScreen(menuScreen, sprite2add, 25, 19);
             }
             if (secondDigit >= 5 && secondDigit <= 9)
             {
-                menuScreen = addToSprite(menuScreen, sprite2add, 25, 25);
+                menuScreen = addSpriteToScreen(menuScreen, sprite2add, 25, 25);
             }
 
-            drawWholeScreen(canvas, menuScreen);
+            return menuScreen;
         }
 
         private void UpdateScreenGraphics(object sender, PaintEventArgs e)
@@ -494,13 +478,13 @@ namespace Tamagotchi
             {
                 if (isOpenBMenu)
                 {
-                    drawBMenu(canvas);
+                    drawWholeScreen(canvas, getBMenu());
                     return;
                 }
 
                 if (isPaused)
                 {
-                    drawPauseScreen(canvas);
+                    drawWholeScreen(canvas, getPauseScreen());
                     return;
                 }
 
@@ -513,7 +497,7 @@ namespace Tamagotchi
                     SpriteLocation currFrameInfo = spriteSequence[currFrameIdx];
                     string toAddName = currFrameInfo.spriteName.ToString();
                     int[][] sprite2add = (int[][])pet.speciesInfo.sprites.GetType().GetProperty(toAddName).GetValue(pet.speciesInfo.sprites, null);
-                    screen = addToSprite(screen, sprite2add, currFrameInfo.y, currFrameInfo.x);
+                    screen = addSpriteToScreen(screen, sprite2add, currFrameInfo.y, currFrameInfo.x);
                     drawWholeScreen(canvas, screen);
                 }
             }
