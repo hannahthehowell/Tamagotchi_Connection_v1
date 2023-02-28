@@ -23,8 +23,8 @@ namespace Tamagotchi
             A, B, C, D
         }
 
-        public double hunger = 0;
-        public double happiness = 0;
+        public int hunger = 0;
+        public int happiness = 0;
         public double minutesAlive = 0;
         public bool isAging = false;
 

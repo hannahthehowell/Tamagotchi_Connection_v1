@@ -10,8 +10,8 @@ namespace Tamagotchi
     {
         public TestTama()
         {
-            hunger = 4;
-            happiness = 4;
+            hunger = 6;
+            happiness = 2;
             minutesAlive = 7 * 60 * 24;
             isAging = false;
 

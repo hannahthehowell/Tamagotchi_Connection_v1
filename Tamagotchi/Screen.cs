@@ -45,7 +45,7 @@ namespace Tamagotchi
             }
         }
 
-        public void addSpriteFromTopLeft(int[][] sprite, int startingCellY, int startingCellX)
+        public void addSpriteFromTopLeft(int[][] sprite, int startingCellY=0, int startingCellX=0)
         {
             addSpriteToScreen(sprite, startingCellY, startingCellX);
         }

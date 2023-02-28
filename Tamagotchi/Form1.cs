@@ -16,11 +16,16 @@ namespace Tamagotchi
         private int numTicks = 0;
         private const double ticksPerFrame = 4.5;
         private const int millisecondsPerTick = 100;
+        
         private bool isMenuOpen;
         private bool toggleMenu;
         private bool isPaused = false;
         private bool toggleBMenu;
         private bool isOpenBMenu = false;
+
+        private int currMenuIndex = -1;
+        private bool clearMenu = false;
+        private bool menuIndexChanged = false;
 
         private bool petIsIdle = false;
         private int idleAnimationChoice = 0;
@@ -97,7 +102,12 @@ namespace Tamagotchi
             Console.WriteLine("A Button Clicked");
             if (!isPaused)
             {
-
+                currMenuIndex++;
+                if (currMenuIndex == 9)
+                {
+                    currMenuIndex = -1;
+                }
+                menuIndexChanged = true;
             }
         }
 
@@ -344,6 +354,25 @@ namespace Tamagotchi
 
         }
 
+        private void makeHungryHappyPage()
+        {
+            screen.addSpriteFromTopLeft(menuSprites.hungry_happy_page);
+            fillHearts(pet.hunger, 7);
+            fillHearts(pet.happiness, 23);
+        }
+
+        private void fillHearts(int metric, int startY)
+        {
+            int startX = 0;
+            int hearts2draw = (metric <= 4) ? metric : 4;
+            for (int i = 1; i <= hearts2draw; i++)
+            {
+                int[][] sprite2Add = menuSprites.heart_full;
+                screen.addSpriteFromTopLeft(sprite2Add, startY, startX);
+                startX = startX + sprite2Add[0].Length + 1;
+            }
+        }
+
         private void addNameToScreen(string name, int xOffset = 0)
         {
             int startingX = 1 + xOffset;
@@ -444,7 +473,23 @@ namespace Tamagotchi
                 toggleBMenu = false;
                 isOpenBMenu = !isOpenBMenu;
             }
-         
+
+            if (clearMenu)
+            {
+                clearMenu = false;
+                currMenuIndex = -1;
+            }
+
+            if (menuIndexChanged)
+            {
+                Console.WriteLine("Menu Index changed");
+                menuIndexChanged = false;
+                if (currMenuIndex != -1)
+                {
+                    Console.WriteLine("Currently on Menu item: " + currMenuIndex);
+                }
+            }
+
             // redraws the canvas each tick
             Screen.Invalidate();
         }
