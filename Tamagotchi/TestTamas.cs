@@ -15,15 +15,15 @@ namespace Tamagotchi
             minutesAlive = 7 * 60 * 24;
             isAging = false;
 
-            givenName = "";
-            weight = 1;
+            givenName = "Joel";
+            weight = 22;
             age = 7;
-            training = 9;
+            training = 3;
 
             parent1Nature = SpeciesInfo.Nature.Undetermined;
             parent2Nature = SpeciesInfo.Nature.Undetermined;
             isChildOfSenior = false;
-            generationNumber = 5;
+            generationNumber = 4;
 
             hasBaby = false;
             minutesWithBaby = 0;
@@ -33,7 +33,7 @@ namespace Tamagotchi
 
             careTier = CareTier.D;
 
-            sex = Sex.Male;
+            sex = Sex.Female;
             speciesInfo = new Masktchi();
         }
     }

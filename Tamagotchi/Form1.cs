@@ -5,6 +5,7 @@ using System.Security.Policy;
 using System.Text.Json;
 using Tamagotchi.CustomComponents;
 using Tamagotchi.SpriteSheetClasses.Species;
+using static System.Windows.Forms.AxHost;
 
 namespace Tamagotchi
 {
@@ -23,7 +24,7 @@ namespace Tamagotchi
         private bool toggleBMenu;
         private bool isOpenBMenu = false;
 
-        StateTree stateTree;
+        StateTree defaultStateTree;
         StateNode currentState;
 
         private int currMenuIndex = -1;
@@ -56,7 +57,7 @@ namespace Tamagotchi
             petIsIdle = true;
 
             PopulateStateTree();
-            currentState = stateTree.root;
+            currentState = defaultStateTree.root;
     }
 
         private void populateSpriteSheets()
@@ -545,9 +546,9 @@ namespace Tamagotchi
         {
             int startX = 0;
             int hearts2draw = (metric <= 4) ? metric : 4;
+            int[][] sprite2Add = menuSprites.heart_full;
             for (int i = 1; i <= hearts2draw; i++)
             {
-                int[][] sprite2Add = menuSprites.heart_full;
                 screen.addSpriteFromTopLeft(sprite2Add, startY, startX);
                 startX = startX + sprite2Add[0].Length + 1;
             }
@@ -556,22 +557,67 @@ namespace Tamagotchi
         private void GenerateTrainingScreen()
         {
             Console.WriteLine("GenerateTrainingScreen");
+            screen = new Screen();
+            petIsIdle = false;
+            screen.addSpriteFromTopLeft(menuSprites.training_page);
+            fillBar(pet.training, 18);
+        }
+
+        private void fillBar(int metric, int startY)
+        {
+            int[][] barSprite = new int[3][];
+            barSprite[0] = new int[] { 1, 1 };
+            barSprite[1] = new int[] { 1, 1 };
+            barSprite[2] = new int[] { 1, 1 };
+            int startX = 3;
+            for (int i = 1; i <= metric; i++)
+            {
+                screen.addSpriteFromTopLeft(barSprite, startY, startX);
+                startX = startX + barSprite[0].Length + 1;
+            }
         }
 
         private void GenerateInfoScreen()
         {
             Console.WriteLine("GenerateInfoScreen");
+            screen = new Screen();
+            petIsIdle = false;
+            screen.addSpriteFromTopLeft(menuSprites.name_page);
+            addLargeNumToScreenFromRight(pet.age, 0, 22);
+            addLargeNumToScreenFromRight(pet.weight, 8, 22);
+            addNameToScreen(pet.givenName);  
+        }
+
+        private void addLargeNumToScreenFromRight(int num2add, int startY, int startXRight)
+        {
+            int numDigits = num2add.ToString().Length;
+            for (int i = 0; i < numDigits; i++)
+            {
+                string digit = num2add.ToString()[numDigits-i-1].ToString();
+                string propName = "large_" + digit;
+                int[][] sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
+                screen.addSpriteFromTopRight(sprite2add, startY, startXRight);
+                startXRight = startXRight - ScreenSettings.cellsPerNumberWidth;
+            } 
         }
 
         private void GenerateGenGenScreen()
         {
             Console.WriteLine("GenerateGenGenScreen");
+            screen = new Screen();
+            petIsIdle = false;
+            screen.addSpriteFromTopLeft(menuSprites.gen_page);
+            addLargeNumToScreenFromRight(pet.generationNumber, 23, 15);
+            if (pet.sex != Pet.Sex.Undetermined) {
+                int[][] gender = pet.sex == Pet.Sex.Male ? menuSprites.boy : menuSprites.girl;
+                screen.addSpriteFromTopRight(gender, 10, 31);
+            }
         }
 
 
         private void PopulateStateTree()
         {
-            stateTree = new StateTree();
+            defaultStateTree = new StateTree();
             
             StateNode root = new StateNode();
             root.name = "Idle";
@@ -695,7 +741,7 @@ namespace Tamagotchi
 
 
 
-            stateTree.root = root;
+            defaultStateTree.root = root;
         }
     }
 }

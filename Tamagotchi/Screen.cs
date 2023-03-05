@@ -49,6 +49,10 @@ namespace Tamagotchi
         {
             addSpriteToScreen(sprite, startingCellY, startingCellX);
         }
+        public void addSpriteFromTopRight(int[][] sprite, int startingCellY, int startingCellXRight)
+        {
+            addSpriteToScreen(sprite, startingCellY, startingCellXRight - sprite[0].Length + 1);
+        }
         public void addSpriteFromBottomLeft(int[][] sprite, int startingCellY, int startingCellX)
         {
             startingCellY = startingCellY - sprite.Length;
