@@ -88,6 +88,17 @@ namespace Tamagotchi
         }
         private void SoundButtonClicked(object sender, EventArgs e)
         {
+            Console.WriteLine("Sound Button Clicked");
+            toggleMenu = true;
+        }
+        private void ExportButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Export Button Clicked");
+            toggleMenu = true;
+        }
+        private void ImportButtonClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Import Button Clicked");
             toggleMenu = true;
         }
         private void ResetButtonClicked(object sender, EventArgs e)
@@ -257,7 +268,7 @@ namespace Tamagotchi
 
                 if (isPaused)
                 {
-                    makePauseScreen();
+                    GeneratePauseScreen();
                     DrawWholeScreen(canvas);
                     return;
                 }
@@ -342,8 +353,10 @@ namespace Tamagotchi
         }
 
 
-        private void makePauseScreen()
+        private void GeneratePauseScreen()
         {
+            Console.WriteLine("GeneratePauseScreen");
+            screen = new Screen();
             screen.addSpriteFromBottomAtMiddle(pet.speciesInfo.sprites.idle1, ScreenSettings.screenHeightNumCells - 9);
             addNameToScreen("pause", 1);
         }
@@ -608,6 +621,8 @@ namespace Tamagotchi
             }
         }
 
+
+        ///// State Tree Population
 
         private void PopulateStateTree()
         {

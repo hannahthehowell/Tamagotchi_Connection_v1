@@ -43,6 +43,8 @@ namespace Tamagotchi
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.PauseButton = new System.Windows.Forms.Button();
             this.SoundButton = new System.Windows.Forms.Button();
+            this.ExportSaveButton = new System.Windows.Forms.Button();
+            this.ImportSaveButton = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
             this.MenuButton = new System.Windows.Forms.Button();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
@@ -161,21 +163,25 @@ namespace Tamagotchi
             // 
             // MenuPanel
             // 
-            this.MenuPanel.BackColor = System.Drawing.Color.LightGray;
+            this.MenuPanel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.MenuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MenuPanel.Controls.Add(this.PauseButton);
+            this.MenuPanel.Controls.Add(this.SoundButton);
+            this.MenuPanel.Controls.Add(this.ExportSaveButton);
+            this.MenuPanel.Controls.Add(this.ImportSaveButton);
             this.MenuPanel.Controls.Add(this.SoundButton);
             this.MenuPanel.Controls.Add(this.ResetButton);
             this.MenuPanel.Controls.Add(this.MenuButton);
             this.MenuPanel.Location = new System.Drawing.Point(0, 0);
-            this.MenuPanel.MaximumSize = new System.Drawing.Size(85, 176);
-            this.MenuPanel.MinimumSize = new System.Drawing.Size(85, 23);
+            this.MenuPanel.MaximumSize = new System.Drawing.Size(86, 293);
+            this.MenuPanel.MinimumSize = new System.Drawing.Size(86, 25);
             this.MenuPanel.Name = "MenuPanel";
             this.MenuPanel.Size = new System.Drawing.Size(85, 23);
             this.MenuPanel.TabIndex = 7;
             // 
             // PauseButton
             // 
-            this.PauseButton.Location = new System.Drawing.Point(3, 29);
+            this.PauseButton.Location = new System.Drawing.Point(3, 28);
             this.PauseButton.Name = "PauseButton";
             this.PauseButton.Size = new System.Drawing.Size(78, 32);
             this.PauseButton.TabIndex = 1;
@@ -185,7 +191,7 @@ namespace Tamagotchi
             // 
             // SoundButton
             // 
-            this.SoundButton.Location = new System.Drawing.Point(3, 67);
+            this.SoundButton.Location = new System.Drawing.Point(3, 65);
             this.SoundButton.Name = "SoundButton";
             this.SoundButton.Size = new System.Drawing.Size(78, 48);
             this.SoundButton.TabIndex = 1;
@@ -193,9 +199,29 @@ namespace Tamagotchi
             this.SoundButton.UseVisualStyleBackColor = true;
             this.SoundButton.Click += new System.EventHandler(this.SoundButtonClicked);
             // 
+            // ExportSaveButton
+            // 
+            this.ExportSaveButton.Location = new System.Drawing.Point(3, 118);
+            this.ExportSaveButton.Name = "ExportSaveButton";
+            this.ExportSaveButton.Size = new System.Drawing.Size(78, 48);
+            this.ExportSaveButton.TabIndex = 1;
+            this.ExportSaveButton.Text = "Export/Save Tamagotchi";
+            this.ExportSaveButton.UseVisualStyleBackColor = true;
+            this.ExportSaveButton.Click += new System.EventHandler(this.ExportButtonClicked);
+            // 
+            // ImportSaveButton
+            // 
+            this.ImportSaveButton.Location = new System.Drawing.Point(3, 171);
+            this.ImportSaveButton.Name = "ImportSaveButton";
+            this.ImportSaveButton.Size = new System.Drawing.Size(78, 48);
+            this.ImportSaveButton.TabIndex = 1;
+            this.ImportSaveButton.Text = "Import Tamagotchi";
+            this.ImportSaveButton.UseVisualStyleBackColor = true;
+            this.ImportSaveButton.Click += new System.EventHandler(this.ImportButtonClicked);
+            // 
             // ResetButton
             // 
-            this.ResetButton.Location = new System.Drawing.Point(3, 121);
+            this.ResetButton.Location = new System.Drawing.Point(3, 224);
             this.ResetButton.Name = "ResetButton";
             this.ResetButton.Size = new System.Drawing.Size(78, 48);
             this.ResetButton.TabIndex = 1;
@@ -210,7 +236,7 @@ namespace Tamagotchi
             this.MenuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MenuButton.Location = new System.Drawing.Point(0, 0);
             this.MenuButton.Name = "MenuButton";
-            this.MenuButton.Size = new System.Drawing.Size(85, 23);
+            this.MenuButton.Size = new System.Drawing.Size(86, 23);
             this.MenuButton.TabIndex = 0;
             this.MenuButton.Text = "Menu";
             this.MenuButton.UseVisualStyleBackColor = false;
@@ -263,10 +289,12 @@ namespace Tamagotchi
         private TransparentPictureBox Frame;
         private TransparentPictureBox Screen;
         private Panel MenuPanel;
-        private Button ResetButton;
         private Button MenuButton;
         private Button PauseButton;
         private Button SoundButton;
+        private Button ExportSaveButton;
+        private Button ImportSaveButton;
+        private Button ResetButton;
         private System.Windows.Forms.Timer GameTimer;
     }
 }
