@@ -22,7 +22,8 @@ namespace Tamagotchi
         private bool toggleMenu;
         private bool isPaused = false;
         private bool toggleBMenu;
-        private bool isOpenBMenu = false;
+        private bool isOpenTimeScreen = false;
+        private bool is24hrTime = false;
 
         StateTree defaultStateTree;
         StateNode currentState;
@@ -109,6 +110,11 @@ namespace Tamagotchi
             Console.WriteLine("A Button Clicked");
             if (!isPaused)
             {
+                //if (!updateState('A'))
+                //{
+                //    callButtonFunctions('A');
+                //}
+                callButtonFunctions('A');
                 updateState('A');
             }
         }
@@ -119,7 +125,12 @@ namespace Tamagotchi
             // toggleBMenu = true;
             if (!isPaused)
             {
-                updateState('B');
+                //if (!updateState('B'))
+                //{
+                //    callButtonFunctions('B');
+                //}
+                callButtonFunctions('B');
+                updateState('B');  
             }
         }
 
@@ -128,30 +139,102 @@ namespace Tamagotchi
             Console.WriteLine("C Button Clicked");
             if (!isPaused)
             {
+                //if (!updateState('C'))
+                //{
+                //    callButtonFunctions('C');
+                //}
+                callButtonFunctions('C');
                 updateState('C');
             }
         }
 
-        private void updateState(char button)
+        private bool callButtonFunctions(char button)
+        {
+            List<Action> buttonFunctions;
+            switch (button)
+            {
+                case 'A':
+                    if (currentState.AButtonFunctionList != null)
+                    {
+                        buttonFunctions = currentState.AButtonFunctionList;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    break;
+                case 'B':
+                    if (currentState.BButtonFunctionList != null)
+                    {
+                        buttonFunctions = currentState.BButtonFunctionList;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    break;
+                case 'C':
+                    if (currentState.CButtonFunctionList != null)
+                    {
+                        buttonFunctions = currentState.CButtonFunctionList;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    break;
+                default:
+                    return false;
+            }
+
+            foreach (Action func in buttonFunctions)
+                func();
+            return true;
+        }
+        private bool updateState(char button)
         {
             switch (button)
             {
                 case 'A':
-                    currentState = currentState.AButton;
+                    if (currentState.AButton != null)
+                    {
+                        currentState = currentState.AButton;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                     break;
                 case 'B':
-                    currentState = currentState.BButton;
+                    if (currentState.BButton != null)
+                    {
+                        currentState = currentState.BButton;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                     break;
                 case 'C':
-                    currentState = currentState.CButton;
+                    if (currentState.CButton != null)
+                    {
+                        currentState = currentState.CButton;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                     break;
                 default:
-                    break;
+                    return false;
             }
 
-            foreach (Action func in currentState.functionList)
+            foreach (Action func in currentState.initialFunctionList)
                 func();
+            return true;
         }
+
+        
 
         private void drawWholeScreen(Graphics canvas)
         {
@@ -212,11 +295,11 @@ namespace Tamagotchi
             Graphics canvas = e.Graphics;
             if (pet != null)
             {
-                
-                
-                if (isOpenBMenu)
+
+
+                if (isOpenTimeScreen)
                 {
-                    makeBMenu();
+                    GenerateTimeScreen();
                     drawWholeScreen(canvas);
                     return;
                 }
@@ -267,10 +350,11 @@ namespace Tamagotchi
                 toggleMenu = false;
             }
 
+            // TODO see if following lines are necessary
             if (toggleBMenu)
             {
                 toggleBMenu = false;
-                isOpenBMenu = !isOpenBMenu;
+                isOpenTimeScreen = !isOpenTimeScreen;
             }
 
             if (clearMenu)
@@ -304,6 +388,9 @@ namespace Tamagotchi
             GameTimer.Start();
         }
 
+
+
+        ///// Screen Generation & State Changing /////
         private void GenerateIdleScreen()
         {
             Console.WriteLine("GenerateIdleScreen");
@@ -324,11 +411,6 @@ namespace Tamagotchi
         private void HighlightMenuItem(int index)
         {
             Console.WriteLine("HighlightMenuItem: " + index);
-        }
-
-        private void GenerateTimeMenu()
-        {
-            Console.WriteLine("GenerateTimeMenu");
         }
 
 
@@ -368,8 +450,13 @@ namespace Tamagotchi
                 startingX = startingX + ScreenSettings.cellsPerLetterWidth;
             }
         }
-        private void makeBMenu()
+        private void GenerateTimeScreen()
         {
+            Console.WriteLine("GenerateTimeScreen");
+            screen = new Screen();
+            petIsIdle = false;
+            isOpenTimeScreen = true;
+
             int month = localDateTime.Month;
             int day = localDateTime.Day;
             int hour = localDateTime.Hour;
@@ -383,44 +470,10 @@ namespace Tamagotchi
 
             // construct row 1 - date - 0-6 //
             // add month
-            if (month.ToString().Length == 2)
-            {
-                digit = month.ToString()[0].ToString();
-                propName = "small_" + digit;
-                sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                screen.addSpriteFromTopLeft(sprite2add, 0, 5);
-                digit = month.ToString()[1].ToString();
-                propName = "small_" + digit;
-                sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                screen.addSpriteFromTopLeft(sprite2add, 0, 9);
-            }
-            else
-            {
-                digit = month.ToString();
-                propName = "small_" + digit;
-                sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                screen.addSpriteFromTopLeft(sprite2add, 0, 9);
-            }
+            addSmallNumToScreenFromRight(screen, month, 0, 11);
 
             // add day
-            if (day.ToString().Length == 2)
-            {
-                digit = day.ToString()[0].ToString();
-                propName = "small_" + digit;
-                sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                screen.addSpriteFromTopLeft(sprite2add, 0, 19);
-                digit = day.ToString()[1].ToString();
-                propName = "small_" + digit;
-                sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                screen.addSpriteFromTopLeft(sprite2add, 0, 23);
-            }
-            else
-            {
-                digit = day.ToString();
-                propName = "small_" + digit;
-                sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                screen.addSpriteFromTopLeft(sprite2add, 0, 23);
-            }
+            addSmallNumToScreenFromRight(screen, day, 0, 24);
 
             // add slash in date
             screen.setSinglePixel(1, 1, 15);
@@ -431,47 +484,37 @@ namespace Tamagotchi
             // construct row 2 - time - 7-22 //
             Screen innerScreen = new Screen(16);
 
-            // lines 8-12 am/pm
-            bool isAM = (hour < 12) ? true : false;
-            if (isAM)
+            if (is24hrTime)
             {
-                sprite2add = alnumSprites.time_a;
+                addLargeNumToScreenFromRight(innerScreen, hour, 8, 9);
             }
             else
             {
-                sprite2add = alnumSprites.time_p;
-            }
-            innerScreen.addSpriteFromTopLeft(sprite2add, 1, 1);
-            sprite2add = alnumSprites.time_m;
-            innerScreen.addSpriteFromTopLeft(sprite2add, 1, 7);
+                // lines 8-12 am/pm
+                bool isAM = (hour < 12) ? true : false;
+                if (isAM)
+                {
+                    sprite2add = alnumSprites.time_a;
+                }
+                else
+                {
+                    sprite2add = alnumSprites.time_p;
+                }
+                innerScreen.addSpriteFromTopLeft(sprite2add, 1, 1);
+                sprite2add = alnumSprites.time_m;
+                innerScreen.addSpriteFromTopLeft(sprite2add, 1, 7);
 
 
-            // lines 15-21 time
-            int hourAMPM = hour switch
-            {
-                int i when i == 0 => 12,
-                int i when i > 12 => hour - 12,
-                _ => hour
-            };
+                // lines 15-21 time
+                int hourAMPM = hour switch
+                {
+                    int i when i == 0 => 12,
+                    int i when i > 12 => hour - 12,
+                    _ => hour
+                };
 
-            // add hour
-            if (hourAMPM.ToString().Length == 2)
-            {
-                digit = hourAMPM.ToString()[0].ToString();
-                propName = "large_" + digit;
-                sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                innerScreen.addSpriteFromTopLeft(sprite2add, 8, 1);
-                digit = hourAMPM.ToString()[1].ToString();
-                propName = "large_" + digit;
-                sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                innerScreen.addSpriteFromTopLeft(sprite2add, 8, 6);
-            }
-            else
-            {
-                digit = hourAMPM.ToString();
-                propName = "large_" + digit;
-                sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                innerScreen.addSpriteFromTopLeft(sprite2add, 8, 6);
+                // add hour
+                addLargeNumToScreenFromRight(innerScreen, hourAMPM, 8, 9);
             }
 
             // add colon between hour and minute
@@ -532,6 +575,16 @@ namespace Tamagotchi
 
         }
 
+        private void ToggleTimeSystem()
+        {
+            is24hrTime = !is24hrTime;
+        }
+
+        private void CloseTimeScreen()
+        {
+            isOpenTimeScreen = false;
+        }
+
         private void GenerateHungryHappyScreen()
         {
             Console.WriteLine("GenerateHungryHappyScreen");
@@ -583,12 +636,12 @@ namespace Tamagotchi
             screen = new Screen();
             petIsIdle = false;
             screen.addSpriteFromTopLeft(menuSprites.name_page);
-            addLargeNumToScreenFromRight(pet.age, 0, 22);
-            addLargeNumToScreenFromRight(pet.weight, 8, 22);
+            addLargeNumToScreenFromRight(screen, pet.age, 0, 22);
+            addLargeNumToScreenFromRight(screen, pet.weight, 8, 22);
             addNameToScreen(pet.givenName);  
         }
 
-        private void addLargeNumToScreenFromRight(int num2add, int startY, int startXRight)
+        private void addLargeNumToScreenFromRight(Screen scrn, int num2add, int startY, int startXRight)
         {
             int numDigits = num2add.ToString().Length;
             for (int i = 0; i < numDigits; i++)
@@ -596,9 +649,22 @@ namespace Tamagotchi
                 string digit = num2add.ToString()[numDigits-i-1].ToString();
                 string propName = "large_" + digit;
                 int[][] sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
-                screen.addSpriteFromTopRight(sprite2add, startY, startXRight);
+                scrn.addSpriteFromTopRight(sprite2add, startY, startXRight);
                 startXRight = startXRight - ScreenSettings.cellsPerNumberWidth;
             } 
+        }
+
+        private void addSmallNumToScreenFromRight(Screen scrn, int num2add, int startY, int startXRight)
+        {
+            int numDigits = num2add.ToString().Length;
+            for (int i = 0; i < numDigits; i++)
+            {
+                string digit = num2add.ToString()[numDigits - i - 1].ToString();
+                string propName = "small_" + digit;
+                int[][] sprite2add = (int[][])alnumSprites.GetType().GetProperty(propName).GetValue(alnumSprites, null);
+                scrn.addSpriteFromTopRight(sprite2add, startY, startXRight);
+                startXRight = startXRight - ScreenSettings.cellsPerNumberSmallWidth;
+            }
         }
 
         private void GenerateGenGenScreen()
@@ -607,7 +673,7 @@ namespace Tamagotchi
             screen = new Screen();
             petIsIdle = false;
             screen.addSpriteFromTopLeft(menuSprites.gen_page);
-            addLargeNumToScreenFromRight(pet.generationNumber, 23, 15);
+            addLargeNumToScreenFromRight(screen, pet.generationNumber, 23, 15);
             if (pet.sex != Pet.Sex.Undetermined) {
                 int[][] gender = pet.sex == Pet.Sex.Male ? menuSprites.boy : menuSprites.girl;
                 screen.addSpriteFromTopRight(gender, 10, 31);
@@ -621,36 +687,44 @@ namespace Tamagotchi
             
             StateNode root = new StateNode();
             root.name = "Idle";
-            root.functionList.Add(GenerateIdleScreen);
-            root.functionList.Add(() => HighlightMenuItem(-1));
+            root.initialFunctionList.Add(GenerateIdleScreen);
+            root.initialFunctionList.Add(() => HighlightMenuItem(-1));
 
-            StateNode timeMenu = new StateNode();
-            timeMenu.name = "Time Menu";
-            timeMenu.functionList.Add(GenerateTimeMenu);
+
+            ///// Time Screen Nodes
+
+            StateNode timeScreen = new StateNode();
+            timeScreen.name = "Time Screen";
+            timeScreen.initialFunctionList.Add(GenerateTimeScreen);
+            timeScreen.AButtonFunctionList.Add(ToggleTimeSystem);
+            timeScreen.BButtonFunctionList.Add(CloseTimeScreen);
+            timeScreen.BButton = root;
+
+            root.BButton = timeScreen;
 
 
             ///// Menu 0 Meter Nodes
 
             StateNode menu0 = new StateNode();
             menu0.name = "Menu 0: Meter";
-            menu0.functionList.Add(GenerateIdleScreen);
-            menu0.functionList.Add(() => HighlightMenuItem(0));
+            menu0.initialFunctionList.Add(GenerateIdleScreen);
+            menu0.initialFunctionList.Add(() => HighlightMenuItem(0));
 
             StateNode hungryHappy = new StateNode();
             hungryHappy.name = "Hungry/Happy Page";
-            hungryHappy.functionList.Add(GenerateHungryHappyScreen);
+            hungryHappy.initialFunctionList.Add(GenerateHungryHappyScreen);
 
             StateNode training = new StateNode();
             training.name = "Training Page";
-            training.functionList.Add(GenerateTrainingScreen);
+            training.initialFunctionList.Add(GenerateTrainingScreen);
 
             StateNode info = new StateNode();
             info.name = "Info Page";
-            info.functionList.Add(GenerateInfoScreen);
+            info.initialFunctionList.Add(GenerateInfoScreen);
 
             StateNode genGen = new StateNode();
             genGen.name = "Gen/Gen Page";
-            genGen.functionList.Add(GenerateGenGenScreen);
+            genGen.initialFunctionList.Add(GenerateGenGenScreen);
 
             menu0.BButton = hungryHappy;
             menu0.CButton = root;
@@ -674,64 +748,64 @@ namespace Tamagotchi
 
             StateNode menu1 = new StateNode();
             menu1.name = "Menu 1: Chef";
-            menu1.functionList.Add(GenerateIdleScreen);
-            menu1.functionList.Add(() => HighlightMenuItem(1));
+            menu1.initialFunctionList.Add(GenerateIdleScreen);
+            menu1.initialFunctionList.Add(() => HighlightMenuItem(1));
 
 
             ///// Menu 2 Toilet Nodes
            
             StateNode menu2 = new StateNode();
             menu2.name = "Menu 2: Toilet";
-            menu2.functionList.Add(GenerateIdleScreen);
-            menu2.functionList.Add(() => HighlightMenuItem(2));
+            menu2.initialFunctionList.Add(GenerateIdleScreen);
+            menu2.initialFunctionList.Add(() => HighlightMenuItem(2));
 
 
             ///// Menu 3 Game Nodes
 
             StateNode menu3 = new StateNode();
             menu3.name = "Menu 3: Game";
-            menu3.functionList.Add(GenerateIdleScreen);
-            menu3.functionList.Add(() => HighlightMenuItem(3));
+            menu3.initialFunctionList.Add(GenerateIdleScreen);
+            menu3.initialFunctionList.Add(() => HighlightMenuItem(3));
 
 
             ///// Menu 4 Connect Nodes
 
             StateNode menu4 = new StateNode();
             menu4.name = "Menu 4: Connect";
-            menu4.functionList.Add(GenerateIdleScreen);
-            menu4.functionList.Add(() => HighlightMenuItem(4));
+            menu4.initialFunctionList.Add(GenerateIdleScreen);
+            menu4.initialFunctionList.Add(() => HighlightMenuItem(4));
 
 
             ///// Menu 5 Talk Nodes
 
             StateNode menu5 = new StateNode();
             menu5.name = "Menu 5: Talk";
-            menu5.functionList.Add(GenerateIdleScreen);
-            menu5.functionList.Add(() => HighlightMenuItem(5));
+            menu5.initialFunctionList.Add(GenerateIdleScreen);
+            menu5.initialFunctionList.Add(() => HighlightMenuItem(5));
 
 
             ///// Menu 6 Medicine Nodes
 
             StateNode menu6 = new StateNode();
             menu6.name = "Menu 6: Medicine";
-            menu6.functionList.Add(GenerateIdleScreen);
-            menu6.functionList.Add(() => HighlightMenuItem(6));
+            menu6.initialFunctionList.Add(GenerateIdleScreen);
+            menu6.initialFunctionList.Add(() => HighlightMenuItem(6));
 
 
             ///// Menu 7 Lamp Nodes
 
             StateNode menu7 = new StateNode();
             menu7.name = "Menu 7: Lamp";
-            menu7.functionList.Add(GenerateIdleScreen);
-            menu7.functionList.Add(() => HighlightMenuItem(7));
+            menu7.initialFunctionList.Add(GenerateIdleScreen);
+            menu7.initialFunctionList.Add(() => HighlightMenuItem(7));
 
 
             ///// Menu 8 Book Nodes
 
             StateNode menu8 = new StateNode();
             menu8.name = "Menu 8: Book";
-            menu8.functionList.Add(GenerateIdleScreen);
-            menu8.functionList.Add(() => HighlightMenuItem(8));
+            menu8.initialFunctionList.Add(GenerateIdleScreen);
+            menu8.initialFunctionList.Add(() => HighlightMenuItem(8));
 
 
 

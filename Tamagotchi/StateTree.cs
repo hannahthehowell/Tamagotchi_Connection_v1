@@ -20,6 +20,10 @@ namespace Tamagotchi
         public StateNode CButton { get; set; }
         public StateNode parentNode { get; set; }
         public string name { get; set; }
-        public List<Action> functionList = new List<Action>();
+        public List<Action> initialFunctionList = new List<Action>();
+
+        public List<Action> AButtonFunctionList = new List<Action>();
+        public List<Action> BButtonFunctionList = new List<Action>();
+        public List<Action> CButtonFunctionList = new List<Action>();
     }
 }
