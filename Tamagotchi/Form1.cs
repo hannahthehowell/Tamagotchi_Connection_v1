@@ -3,9 +3,13 @@ using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.Security.Policy;
 using System.Text.Json;
+using System.Xml.Linq;
 using Tamagotchi.CustomComponents;
 using Tamagotchi.SpriteSheetClasses.Species;
+using Newtonsoft.Json;
 using static System.Windows.Forms.AxHost;
+using System.Windows.Forms;
+using Microsoft.VisualBasic.Devices;
 
 namespace Tamagotchi
 {
@@ -59,22 +63,22 @@ namespace Tamagotchi
         private void PopulateSpriteSheets()
         {
             string jsonString = File.ReadAllText("../../../SpriteSheets/Other/AlphaNumSpriteSheet.json");
-            alnumSprites = JsonSerializer.Deserialize<AlphaNumSprites>(jsonString);
+            alnumSprites = System.Text.Json.JsonSerializer.Deserialize<AlphaNumSprites>(jsonString);
             
             jsonString = File.ReadAllText("../../../SpriteSheets/Other/ConnectionSpriteSheet.json");
-            connectionSprites = JsonSerializer.Deserialize<ConnectionSprites>(jsonString);
+            connectionSprites = System.Text.Json.JsonSerializer.Deserialize<ConnectionSprites>(jsonString);
             
             jsonString = File.ReadAllText("../../../SpriteSheets/Other/FoodSpriteSheet.json");
-            foodSprites = JsonSerializer.Deserialize<FoodSprites>(jsonString);
+            foodSprites = System.Text.Json.JsonSerializer.Deserialize<FoodSprites>(jsonString);
 
             jsonString = File.ReadAllText("../../../SpriteSheets/Other/ItemsSpriteSheet.json");
-            itemSprites = JsonSerializer.Deserialize<ItemSprites>(jsonString);
+            itemSprites = System.Text.Json.JsonSerializer.Deserialize<ItemSprites>(jsonString);
 
             jsonString = File.ReadAllText("../../../SpriteSheets/Other/MenuingSpriteSheet.json");
-            menuSprites = JsonSerializer.Deserialize<MenuSprites>(jsonString);
+            menuSprites = System.Text.Json.JsonSerializer.Deserialize<MenuSprites>(jsonString);
 
             jsonString = File.ReadAllText("../../../SpriteSheets/Other/MiscSpriteSheet.json");
-            miscSprites = JsonSerializer.Deserialize<MiscSprites>(jsonString);
+            miscSprites = System.Text.Json.JsonSerializer.Deserialize<MiscSprites>(jsonString);
         }
 
         private void PauseButtonClicked(object sender, EventArgs e)
@@ -94,12 +98,57 @@ namespace Tamagotchi
         private void ExportButtonClicked(object sender, EventArgs e)
         {
             Console.WriteLine("Export Button Clicked");
+            string petAsJSON = JsonConvert.SerializeObject(pet);
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Json files (*.json)|*.json";
+            string defaultFileName = pet.speciesInfo.species + "_" + pet.givenName + "_" + localDateTime;
+            foreach (var c in Path.GetInvalidFileNameChars())
+            {
+                defaultFileName = defaultFileName.Replace(c, '-');
+            }
+            saveFileDialog.FileName = defaultFileName;
+            saveFileDialog.FilterIndex = 2;
+            saveFileDialog.RestoreDirectory = true;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(saveFileDialog.FileName, petAsJSON);
+            }
+
             toggleMenu = true;
         }
         private void ImportButtonClicked(object sender, EventArgs e)
         {
             Console.WriteLine("Import Button Clicked");
+
+            OpenFileDialog openFileDialog = new OpenFileDialog()
+            {
+                FileName = "Select a json file",
+                Filter = "Json files (*.json)|*.json",
+                Title = "Open save file"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string petAsJSON = File.ReadAllText(openFileDialog.FileName);
+                pet = JsonConvert.DeserializeObject<Pet>(petAsJSON);
+            } 
+
+            if (pet == null)
+            {
+                Console.WriteLine("Bad File");
+                pet = new Pet();
+            }
+            // TODO add more checks for importing good files
+
             toggleMenu = true;
+        }
+
+        private Pet getPetFromFile(string fileName)
+        {
+            string petAsJSON = File.ReadAllText(fileName);
+            Pet newPet = JsonConvert.DeserializeObject<Pet>(petAsJSON);
+            return newPet;
         }
         private void ResetButtonClicked(object sender, EventArgs e)
         {
@@ -332,7 +381,7 @@ namespace Tamagotchi
         ///// Screen Generation & State Changing /////
         private void GenerateIdleScreen()
         {
-            Console.WriteLine("GenerateIdleScreen");
+            //Console.WriteLine("GenerateIdleScreen");
             petIsIdle = true;
             SpriteLocation[] spriteSequence = pet.speciesInfo.idleSequence1;
             int frameNum = (int)(numTicks / ticksPerFrame);
