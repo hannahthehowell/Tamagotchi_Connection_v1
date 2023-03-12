@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Bson;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
@@ -48,6 +49,8 @@ namespace Tamagotchi
 
         public Sex sex;
         public SpeciesInfo speciesInfo;
+
+        public PetStatus status = new PetStatus();
 
         // When creating a pet for the first time
         public Pet()
@@ -163,6 +166,8 @@ namespace Tamagotchi
             givenName = nameList[num];
         }
 
+
+
         // When hatching an egg for the first time
         public void Hatch()
         {
@@ -183,6 +188,11 @@ namespace Tamagotchi
             speciesInfo.lifeStage = SpeciesInfo.LifeStage.Baby;
         }
 
+        public void EatFood(int cursorIndex)
+        {
+
+        }
+
         public void Evolve()
         {
             
@@ -192,5 +202,18 @@ namespace Tamagotchi
         {
 
         }
+    }
+
+    internal class PetStatus
+    {
+        public bool IsAlive = true;
+        public bool IsSleeping = false;
+        public bool IsMad = false;
+        public bool IsCrying = false;
+        public bool IsBegging = false;
+        public bool HasFlatulence = false;
+        public bool IsSick = false;
+        public bool HasToothache = false;
+        public bool IsAskingForAttention = false;
     }
 }

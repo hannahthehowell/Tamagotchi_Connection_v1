@@ -34,6 +34,8 @@ namespace Tamagotchi
         private bool petIsIdle = false;
         private int idleAnimationChoice = 0;
 
+        private int cursorIndex = 0;
+
         private AlphaNumSprites alnumSprites;
         private ConnectionSprites connectionSprites;
         private FoodSprites foodSprites;
@@ -53,10 +55,10 @@ namespace Tamagotchi
 
             // pet = new Pet();
             // For testing
-            pet = new TestTama();
+            pet = getPetFromInternalFile("Masktchi_Joel_3-5-2023 8-18-08 PM.json");
             petIsIdle = true;
 
-            PopulateStateTree();
+            PopulateDefaultStateTree();
             currentState = defaultStateTree.root;
     }
 
@@ -144,9 +146,9 @@ namespace Tamagotchi
             toggleMenu = true;
         }
 
-        private Pet getPetFromFile(string fileName)
+        private Pet getPetFromInternalFile(string fileName)
         {
-            string petAsJSON = File.ReadAllText(fileName);
+            string petAsJSON = File.ReadAllText("../../../TestTamaJSONs/" + fileName);
             Pet newPet = JsonConvert.DeserializeObject<Pet>(petAsJSON);
             return newPet;
         }
@@ -173,7 +175,6 @@ namespace Tamagotchi
         private void BButtonClicked(object sender, EventArgs e)
         {
             Console.WriteLine("B Button Clicked");
-            // toggleBMenu = true;
             if (!isPaused)
             {
                 CallButtonFunction('B');
@@ -407,9 +408,9 @@ namespace Tamagotchi
             Console.WriteLine("GeneratePauseScreen");
             screen = new Screen();
             screen.addSpriteFromBottomAtMiddle(pet.speciesInfo.sprites.idle1, ScreenSettings.screenHeightNumCells - 9);
-            addNameToScreen("pause", 1);
+            AddNameToScreen("pause", 1);
         }
-        private void addNameToScreen(string name, int xOffset = 0)
+        private void AddNameToScreen(string name, int xOffset = 0)
         {
             int startingX = 1 + xOffset;
             char[] chars = name.ToLower().ToCharArray();
@@ -581,11 +582,11 @@ namespace Tamagotchi
             screen = new Screen();
             petIsIdle = false;
             screen.addSpriteFromTopLeft(menuSprites.hungry_happy_page);
-            fillHearts(pet.hunger, 7);
-            fillHearts(pet.happiness, 23);
+            FillHearts(pet.hunger, 7);
+            FillHearts(pet.happiness, 23);
         }
 
-        private void fillHearts(int metric, int startY)
+        private void FillHearts(int metric, int startY)
         {
             int startX = 0;
             int hearts2draw = (metric <= 4) ? metric : 4;
@@ -603,10 +604,10 @@ namespace Tamagotchi
             screen = new Screen();
             petIsIdle = false;
             screen.addSpriteFromTopLeft(menuSprites.training_page);
-            fillBar(pet.training, 18);
+            FillBar(pet.training, 18);
         }
 
-        private void fillBar(int metric, int startY)
+        private void FillBar(int metric, int startY)
         {
             int[][] barSprite = new int[3][];
             barSprite[0] = new int[] { 1, 1 };
@@ -628,7 +629,7 @@ namespace Tamagotchi
             screen.addSpriteFromTopLeft(menuSprites.name_page);
             AddLargeNumToScreenFromRight(screen, pet.age, 0, 22);
             AddLargeNumToScreenFromRight(screen, pet.weight, 8, 22);
-            addNameToScreen(pet.givenName);  
+            AddNameToScreen(pet.givenName);  
         }
 
         private void AddLargeNumToScreenFromRight(Screen scrn, int num2add, int startY, int startXRight)
@@ -670,17 +671,43 @@ namespace Tamagotchi
             }
         }
 
+        private void GenerateFoodChoiceScreen()
+        {
+            Console.WriteLine("GenerateFoodChoiceScreen");
+            screen = new Screen();
+            petIsIdle = false;
+            screen.addSpriteFromTopLeft(menuSprites.food_menu);
+            screen.addSpriteFromTopLeft(menuSprites.cursor, 2 + 10 * cursorIndex, 0);
+        }
+
+        private void ResetMenuCursor()
+        {
+            cursorIndex = 0;
+        }
+
+        private void ToggleMenuCursor()
+        {
+            cursorIndex = cursorIndex == 0 ? 1 : 0;
+        }
+
+        private void GenerateEatingFoodAnimation()
+        {
+            Console.WriteLine("GenerateEatingFoodAnimation");
+            screen = new Screen();
+            petIsIdle = false;
+        }
+
 
         ///// State Tree Population
 
-        private void PopulateStateTree()
+        private void PopulateDefaultStateTree()
         {
             defaultStateTree = new StateTree();
             
             StateNode root = new StateNode();
             root.name = "Idle";
             root.initialFunctionList.Add(GenerateIdleScreen);
-            root.initialFunctionList.Add(() => HighlightMenuItem(-1));
+            root.initialFunctionList.Add(() => HighlightMenuItem(0));
 
 
             ///// Time Screen Nodes
@@ -695,12 +722,12 @@ namespace Tamagotchi
             root.BButton = timeScreen;
 
 
-            ///// Menu 0 Meter Nodes
-
-            StateNode menu0 = new StateNode();
-            menu0.name = "Menu 0: Meter";
-            menu0.initialFunctionList.Add(GenerateIdleScreen);
-            menu0.initialFunctionList.Add(() => HighlightMenuItem(0));
+            ///// Menu 1 Meter Nodes
+            #region
+            StateNode menu1 = new StateNode();
+            menu1.name = "Menu 1: Meter";
+            menu1.initialFunctionList.Add(GenerateIdleScreen);
+            menu1.initialFunctionList.Add(() => HighlightMenuItem(1));
 
             StateNode hungryHappy = new StateNode();
             hungryHappy.name = "Hungry/Happy Page";
@@ -718,87 +745,110 @@ namespace Tamagotchi
             genGen.name = "Gen/Gen Page";
             genGen.initialFunctionList.Add(GenerateGenGenScreen);
 
-            menu0.BButton = hungryHappy;
-            menu0.CButton = root;
+            menu1.BButton = hungryHappy;
+            menu1.CButton = root;
             hungryHappy.AButton = training;
             hungryHappy.BButton = training;
-            hungryHappy.CButton = menu0;
+            hungryHappy.CButton = menu1;
             training.AButton = info;
             training.BButton = info;
-            training.CButton = menu0;
+            training.CButton = menu1;
             info.AButton = genGen;
             info.BButton = genGen;
-            info.CButton = menu0;
+            info.CButton = menu1;
             genGen.AButton = hungryHappy;
             genGen.BButton = hungryHappy;
-            genGen.CButton = menu0;
+            genGen.CButton = menu1;
 
-            root.AButton = menu0;
-            
-
-            ///// Menu 1 Chef Nodes
-
-            StateNode menu1 = new StateNode();
-            menu1.name = "Menu 1: Chef";
-            menu1.initialFunctionList.Add(GenerateIdleScreen);
-            menu1.initialFunctionList.Add(() => HighlightMenuItem(1));
+            root.AButton = menu1;
+            #endregion
 
 
-            ///// Menu 2 Toilet Nodes
-           
+            ///// Menu 2 Chef Nodes
+            #region
             StateNode menu2 = new StateNode();
-            menu2.name = "Menu 2: Toilet";
+            menu2.name = "Menu 2: Chef";
             menu2.initialFunctionList.Add(GenerateIdleScreen);
             menu2.initialFunctionList.Add(() => HighlightMenuItem(2));
+            menu2.BButtonFunctionList.Add(ResetMenuCursor);
 
+            StateNode foodChoice = new StateNode();
+            foodChoice.name = "Food Choice Page";
+            foodChoice.initialFunctionList.Add(GenerateFoodChoiceScreen);
+            foodChoice.AButtonFunctionList.Add(ToggleMenuCursor);
+            foodChoice.AButtonFunctionList.Add(GenerateFoodChoiceScreen);
 
-            ///// Menu 3 Game Nodes
+            StateNode eatFood = new StateNode();
+            eatFood.name = "Eat Food Animation";
+            eatFood.initialFunctionList.Add(GenerateEatingFoodAnimation);
+            eatFood.initialFunctionList.Add(() => pet.EatFood(cursorIndex));
 
+            menu2.BButton = foodChoice;
+            menu2.CButton = root;
+            foodChoice.BButton = eatFood;
+            foodChoice.CButton = menu2;
+            eatFood.AButton = foodChoice;
+            eatFood.BButton = foodChoice;
+            eatFood.CButton = foodChoice;
+
+            menu1.AButton = menu2;
+            #endregion
+
+            ///// Menu 3 Toilet Nodes
+            #region           
             StateNode menu3 = new StateNode();
-            menu3.name = "Menu 3: Game";
+            menu3.name = "Menu 3: Toilet";
             menu3.initialFunctionList.Add(GenerateIdleScreen);
             menu3.initialFunctionList.Add(() => HighlightMenuItem(3));
+            #endregion
 
-
-            ///// Menu 4 Connect Nodes
-
+            ///// Menu 4 Game Nodes
+            #region
             StateNode menu4 = new StateNode();
-            menu4.name = "Menu 4: Connect";
+            menu4.name = "Menu 4: Game";
             menu4.initialFunctionList.Add(GenerateIdleScreen);
             menu4.initialFunctionList.Add(() => HighlightMenuItem(4));
+            #endregion
 
-
-            ///// Menu 5 Talk Nodes
-
+            ///// Menu 5 Connect Nodes
+            #region
             StateNode menu5 = new StateNode();
-            menu5.name = "Menu 5: Talk";
+            menu5.name = "Menu 5: Connect";
             menu5.initialFunctionList.Add(GenerateIdleScreen);
             menu5.initialFunctionList.Add(() => HighlightMenuItem(5));
+            #endregion
 
-
-            ///// Menu 6 Medicine Nodes
-
+            ///// Menu 6 Talk Nodes
+            #region
             StateNode menu6 = new StateNode();
-            menu6.name = "Menu 6: Medicine";
+            menu6.name = "Menu 6: Talk";
             menu6.initialFunctionList.Add(GenerateIdleScreen);
             menu6.initialFunctionList.Add(() => HighlightMenuItem(6));
+            #endregion
 
-
-            ///// Menu 7 Lamp Nodes
-
+            ///// Menu 7 Medicine Nodes
+            #region
             StateNode menu7 = new StateNode();
-            menu7.name = "Menu 7: Lamp";
+            menu7.name = "Menu 7: Medicine";
             menu7.initialFunctionList.Add(GenerateIdleScreen);
             menu7.initialFunctionList.Add(() => HighlightMenuItem(7));
+            #endregion
 
-
-            ///// Menu 8 Book Nodes
-
+            ///// Menu 8 Lamp Nodes
+            #region
             StateNode menu8 = new StateNode();
-            menu8.name = "Menu 8: Book";
+            menu8.name = "Menu 8: Lamp";
             menu8.initialFunctionList.Add(GenerateIdleScreen);
             menu8.initialFunctionList.Add(() => HighlightMenuItem(8));
+            #endregion
 
+            ///// Menu 9 Book Nodes
+            #region
+            StateNode menu9 = new StateNode();
+            menu9.name = "Menu 9: Book";
+            menu9.initialFunctionList.Add(GenerateIdleScreen);
+            menu9.initialFunctionList.Add(() => HighlightMenuItem(9));
+            #endregion
 
 
 
