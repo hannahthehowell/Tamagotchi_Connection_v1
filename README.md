@@ -2,7 +2,9 @@
 Based off of Bandai's 2004 best-selling toy, this project aims to replicate the digital pets and functionality of the original Tamagotchi Connection.
 
 Please visit these videos on Google Drive to see multiple development stages.
+
 Egg idles then shows the time screen: https://drive.google.com/file/d/1TJ1DY1KntAikkV34UE8vXk3nsK85G9fH/view
+
 Masktchi idles then shows meter and food menus, as well as the time screen: https://drive.google.com/file/d/1DboLXHhAwx8-Kyf9eAHxfbVPgCxCt6c5/view
 
 ## Description from the Tamagotchi Wiki
